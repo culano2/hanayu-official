@@ -1,63 +1,40 @@
 import Image from "next/image";
-
-const catchItems: ReadonlyArray<{
-  name: string;
-  detail: string;
-  status: string;
-}> = [
-  {
-    name: "Silver line fish",
-    detail: "Firm, bright, sashimi-grade handling",
-    status: "Limited",
-  },
-  {
-    name: "Island shellfish",
-    detail: "Clean brine, hand-sorted by size",
-    status: "Fresh",
-  },
-  {
-    name: "Rock coast catch",
-    detail: "Small boat harvest, morning landed",
-    status: "Chef hold",
-  },
-];
+import Badge from "@/components/ui/Badge";
+import Container from "@/components/ui/Container";
+import Heading from "@/components/ui/Heading";
+import Section from "@/components/ui/Section";
+import { todaysCatch } from "@/data/catch";
 
 export default function TodaysCatch() {
   return (
-    <section id="catch" className="bg-[#F7F6F3] py-20 text-[#031320] sm:py-28">
-      <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+    <Section id={todaysCatch.id} tone="light">
+      <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-between gap-10">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.36em] text-[#9B7333]">
-              Today&apos;s Catch
-            </p>
-            <h2 className="mt-5 max-w-xl text-4xl font-semibold leading-tight sm:text-5xl">
-              Landed early. Sorted cold. Released with restraint.
-            </h2>
+            <Badge tone="light">{todaysCatch.eyebrow}</Badge>
+            <Heading as="h2" className="mt-5 max-w-xl" tone="dark">
+              {todaysCatch.title}
+            </Heading>
             <p className="mt-6 max-w-lg text-lg leading-8 text-[#314756]">
-              HANAYU publishes the day by quality, not volume. Each lot is
-              checked for clarity, temperature, and handling before it is made
-              available to partner kitchens.
+              {todaysCatch.body}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 border-y border-[#031320]/15 py-6">
-            <div>
-              <p className="text-3xl font-semibold">186 kg</p>
-              <p className="mt-2 text-sm text-[#506474]">Morning allocation</p>
-            </div>
-            <div>
-              <p className="text-3xl font-semibold">11 lots</p>
-              <p className="mt-2 text-sm text-[#506474]">Quality released</p>
-            </div>
-          </div>
+          <dl className="grid grid-cols-2 gap-4 border-y border-[#031320]/15 py-6">
+            {todaysCatch.stats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="text-sm text-[#506474]">{stat.label}</dt>
+                <dd className="mt-2 text-3xl font-semibold">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         <div className="grid gap-5">
           <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#031320]">
             <Image
-              src="/images/todays-catch.png"
-              alt="Fresh fish and shellfish sorted on ice at the dock"
+              src={todaysCatch.image.src}
+              alt={todaysCatch.image.alt}
               fill
               sizes="(min-width: 1024px) 55vw, 100vw"
               className="object-cover"
@@ -65,15 +42,17 @@ export default function TodaysCatch() {
           </div>
 
           <div className="grid gap-3 md:grid-cols-3">
-            {catchItems.map((item) => (
+            {todaysCatch.items.map((item) => (
               <article
                 key={item.name}
-                className="rounded-md border border-[#031320]/12 bg-white p-5"
+                className="rounded-md border border-[#031320]/12 bg-white p-5 shadow-[0_18px_50px_rgba(3,19,32,0.06)]"
               >
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9B7333]">
+                <Badge className="tracking-[0.22em]" tone="light">
                   {item.status}
-                </p>
-                <h3 className="mt-4 text-lg font-semibold">{item.name}</h3>
+                </Badge>
+                <Heading as="h3" className="mt-4" size="card" tone="dark">
+                  {item.name}
+                </Heading>
                 <p className="mt-3 text-sm leading-6 text-[#506474]">
                   {item.detail}
                 </p>
@@ -81,7 +60,7 @@ export default function TodaysCatch() {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

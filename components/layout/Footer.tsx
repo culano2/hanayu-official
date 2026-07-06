@@ -1,49 +1,84 @@
 import Link from "next/link";
-
-const footerLinks: ReadonlyArray<{ href: string; label: string }> = [
-  { href: "#story", label: "Story" },
-  { href: "#catch", label: "Catch" },
-  { href: "#standard", label: "Standard" },
-];
+import Badge from "@/components/ui/Badge";
+import Container from "@/components/ui/Container";
+import { brand } from "@/data/brand";
+import { footerNavigation } from "@/data/navigation";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="border-t border-white/10 bg-[#020B12]">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_auto] lg:px-10">
-        <div>
-          <p className="text-2xl font-semibold tracking-[0.28em] text-white">
-            HANAYU
-          </p>
-          <p className="mt-4 max-w-xl leading-7 text-white/62">
-            Premium seafood from Huayu Island for chefs, retailers, and guests
-            who value origin, handling, and restraint.
-          </p>
-        </div>
+    <footer id={brand.footer.id} className="border-t border-white/10 bg-[#020B12]">
+      <Container className="py-14 sm:py-16">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+          <div>
+            <Badge>Commercial Supply</Badge>
+            <p className="mt-5 text-3xl font-semibold tracking-[0.26em] text-white">
+              {brand.name}
+            </p>
+            <p className="mt-5 max-w-xl text-base leading-8 text-white/62">
+              {brand.footer.description}
+            </p>
+          </div>
 
-        <div className="grid gap-8 sm:grid-cols-2">
-          <nav aria-label="Footer navigation" className="grid gap-3">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-white/68 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-[0.22em] text-white">
+              Company
+            </h2>
+            <address className="mt-5 space-y-2 not-italic text-sm leading-7 text-white/64">
+              {brand.footer.company.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+              <a
+                href={`mailto:${brand.footer.contactEmail}`}
+                className="inline-flex transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
               >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+                {brand.footer.contactEmail}
+              </a>
+            </address>
+          </div>
 
-          <address className="not-italic text-sm leading-7 text-white/68">
-            <p>Huayu Island, Penghu</p>
-            <a
-              href="mailto:hello@hanayu.example"
-              className="transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
-            >
-              hello@hanayu.example
-            </a>
-          </address>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
+            <nav aria-label="Footer navigation">
+              <h2 className="text-sm font-bold uppercase tracking-[0.22em] text-white">
+                Explore
+              </h2>
+              <div className="mt-5 grid gap-3">
+                {footerNavigation.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-white/64 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </nav>
+
+            <nav aria-label="Social links">
+              <h2 className="text-sm font-bold uppercase tracking-[0.22em] text-white">
+                Social
+              </h2>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {brand.footer.social.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    aria-label={`${brand.name} on ${link.label}`}
+                    className="border border-white/12 px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white/66 transition-colors hover:border-[#C89A4B] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          </div>
         </div>
-      </div>
+
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.18em] text-white/42 sm:flex-row sm:items-center sm:justify-between">
+          <p>{brand.name} Official Website</p>
+          <p>Origin-led seafood supply</p>
+        </div>
+      </Container>
     </footer>
   );
 }

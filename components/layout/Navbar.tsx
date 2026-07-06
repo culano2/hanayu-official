@@ -1,50 +1,113 @@
-import Link from "next/link";
+"use client";
 
-const navItems: ReadonlyArray<{ href: string; label: string }> = [
-  { href: "#story", label: "Story" },
-  { href: "#catch", label: "Today's Catch" },
-  { href: "#standard", label: "Standard" },
-  { href: "#contact", label: "Contact" },
-];
+import Link from "next/link";
+import { useState } from "react";
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
+import { brand } from "@/data/brand";
+import { primaryNavigation } from "@/data/navigation";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => setIsOpen(false);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#031320]/75 backdrop-blur-xl">
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#031320]/78 backdrop-blur-xl">
+      <Container className="flex h-20 items-center justify-between">
         <Link
-          href="/"
-          aria-label="HANAYU home"
-          className="group flex flex-col leading-none"
+          href={brand.homeHref}
+          aria-label={`${brand.name} home`}
+          className="flex flex-col leading-none transition-opacity duration-300 hover:opacity-82 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+          onClick={closeMenu}
         >
           <span className="text-xl font-semibold tracking-[0.28em] text-white sm:text-2xl">
-            HANAYU
+            {brand.name}
           </span>
-          <span className="mt-2 text-[0.65rem] font-medium tracking-[0.32em] text-[#C89A4B]">
-            HUAYU ISLAND
+          <span className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.32em] text-[#C89A4B]">
+            {brand.origin}
           </span>
         </Link>
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-8 text-sm font-medium tracking-[0.12em] text-white/72 md:flex"
+          className="hidden items-center gap-9 text-sm font-semibold tracking-[0.14em] text-white/70 lg:flex"
         >
-          {navItems.map((item) => (
+          {primaryNavigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+              className="transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <Link
-          href="#contact"
-          className="border border-[#C89A4B]/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#F7F6F3] transition-colors duration-200 hover:border-[#C89A4B] hover:bg-[#C89A4B] hover:text-[#031320] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B] sm:px-5"
+        <div className="hidden items-center gap-4 lg:flex">
+          <Button href="#contact" size="sm" variant="secondary">
+            Reserve
+          </Button>
+        </div>
+
+        <button
+          type="button"
+          aria-controls="mobile-navigation"
+          aria-expanded={isOpen}
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          onClick={() => setIsOpen((current) => !current)}
+          className="flex h-11 w-11 items-center justify-center border border-white/16 text-white transition-colors duration-300 hover:border-[#C89A4B] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B] lg:hidden"
         >
-          Reserve
-        </Link>
+          <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
+          <span className="flex w-5 flex-col gap-1.5" aria-hidden="true">
+            <span
+              className={`h-px bg-current transition-transform duration-300 ${
+                isOpen ? "translate-y-[7px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`h-px bg-current transition-opacity duration-300 ${
+                isOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`h-px bg-current transition-transform duration-300 ${
+                isOpen ? "-translate-y-[7px] -rotate-45" : ""
+              }`}
+            />
+          </span>
+        </button>
+      </Container>
+
+      <div
+        id="mobile-navigation"
+        className={`overflow-hidden border-t border-white/10 bg-[#031320]/96 transition-[max-height,opacity] duration-300 lg:hidden ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <Container className="py-5">
+          <nav aria-label="Mobile navigation" className="grid gap-1">
+            {primaryNavigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className="py-4 text-lg font-semibold tracking-[0.08em] text-white/82 transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <Button
+            href="#contact"
+            onClick={closeMenu}
+            className="mt-5 w-full"
+            size="lg"
+            variant="primary"
+          >
+            Reserve
+          </Button>
+        </Container>
       </div>
     </header>
   );
