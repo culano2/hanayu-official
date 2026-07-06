@@ -1,73 +1,86 @@
-export default function LiveCatch() {
+import Image from "next/image";
+
+const catchItems: ReadonlyArray<{
+  name: string;
+  detail: string;
+  status: string;
+}> = [
+  {
+    name: "Silver line fish",
+    detail: "Firm, bright, sashimi-grade handling",
+    status: "Limited",
+  },
+  {
+    name: "Island shellfish",
+    detail: "Clean brine, hand-sorted by size",
+    status: "Fresh",
+  },
+  {
+    name: "Rock coast catch",
+    detail: "Small boat harvest, morning landed",
+    status: "Chef hold",
+  },
+];
+
+export default function TodaysCatch() {
   return (
-    <section className="bg-[#072842] py-24">
-      <div className="mx-auto max-w-7xl px-8">
+    <section id="catch" className="bg-[#F7F6F3] py-20 text-[#031320] sm:py-28">
+      <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+        <div className="flex flex-col justify-between gap-10">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.36em] text-[#9B7333]">
+              Today&apos;s Catch
+            </p>
+            <h2 className="mt-5 max-w-xl text-4xl font-semibold leading-tight sm:text-5xl">
+              Landed early. Sorted cold. Released with restraint.
+            </h2>
+            <p className="mt-6 max-w-lg text-lg leading-8 text-[#314756]">
+              HANAYU publishes the day by quality, not volume. Each lot is
+              checked for clarity, temperature, and handling before it is made
+              available to partner kitchens.
+            </p>
+          </div>
 
-        <div className="mb-16">
-          <p className="text-sm tracking-[0.35em] text-[#C89A4B]">
-            TODAY'S CATCH
-          </p>
-
-          <h2 className="mt-4 text-5xl font-light text-white">
-            今日漁獲
-          </h2>
-        </div>
-
-        <div className="grid gap-8 lg:grid-cols-2">
-
-          {/* 左邊 */}
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-md">
-
-            <div className="flex items-center gap-3">
-
-              <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse" />
-
-              <span className="tracking-[0.25em] text-[#C89A4B]">
-                LIVE
-              </span>
-
+          <div className="grid grid-cols-2 gap-4 border-y border-[#031320]/15 py-6">
+            <div>
+              <p className="text-3xl font-semibold">186 kg</p>
+              <p className="mt-2 text-sm text-[#506474]">Morning allocation</p>
             </div>
-
-            <h3 className="mt-10 text-6xl font-light text-white">
-              186 kg
-            </h3>
-
-            <p className="mt-6 text-xl text-gray-300">
-              劍尖槍鎖管
-            </p>
-
-            <p className="mt-3 text-gray-400">
-              更新時間 04:32
-            </p>
-
+            <div>
+              <p className="text-3xl font-semibold">11 lots</p>
+              <p className="mt-2 text-sm text-[#506474]">Quality released</p>
+            </div>
           </div>
-
-          {/* 右邊 */}
-
-          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#0B4A74] to-[#031320] p-10">
-
-            <h3 className="text-3xl text-white">
-              職人手釣
-            </h3>
-
-            <p className="mt-6 leading-9 text-gray-300">
-
-              每一尾劍尖槍鎖管，
-
-              都由職人於夜間海域
-
-              採用人工手釣方式捕獲，
-
-              全程低溫保鮮，
-
-              保留最自然鮮甜的海味。
-
-            </p>
-
-          </div>
-
         </div>
 
+        <div className="grid gap-5">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#031320]">
+            <Image
+              src="/images/todays-catch.png"
+              alt="Fresh fish and shellfish sorted on ice at the dock"
+              fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-3">
+            {catchItems.map((item) => (
+              <article
+                key={item.name}
+                className="rounded-md border border-[#031320]/12 bg-white p-5"
+              >
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9B7333]">
+                  {item.status}
+                </p>
+                <h3 className="mt-4 text-lg font-semibold">{item.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#506474]">
+                  {item.detail}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
