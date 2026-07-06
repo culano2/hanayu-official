@@ -3,6 +3,7 @@ import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
+import Stat from "@/components/ui/Stat";
 import { brand } from "@/data/brand";
 
 export default function Hero() {
@@ -62,15 +63,14 @@ export default function Hero() {
 
         <dl className="mt-14 grid max-w-4xl grid-cols-1 border-y border-white/14 sm:grid-cols-3">
           {hero.metrics.map((metric) => (
-            <div
+            <Stat
               key={metric.label}
               className="border-white/14 py-5 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0"
-            >
-              <dt className="text-sm leading-6 text-white/62">{metric.label}</dt>
-              <dd className="mt-2 text-2xl font-semibold tracking-[0.04em] text-white">
-                {metric.value}
-              </dd>
-            </div>
+              label={metric.label}
+              size="sm"
+              tone="dark"
+              value={metric.value}
+            />
           ))}
         </dl>
       </Container>

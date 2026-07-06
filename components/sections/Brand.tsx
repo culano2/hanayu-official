@@ -1,4 +1,5 @@
 import Badge from "@/components/ui/Badge";
+import Card from "@/components/ui/Card";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
@@ -28,10 +29,7 @@ export default function Brand() {
           aria-label={`${brand.name} quality standards`}
         >
           {standard.items.map((item, index) => (
-            <article
-              key={item.title}
-              className="rounded-md border border-white/12 bg-white/[0.04] p-6 transition-colors duration-300 hover:bg-white/[0.07]"
-            >
+            <Card key={item.title} className="p-6" tone="dark">
               <p className="text-sm font-semibold text-[#C89A4B]">
                 0{index + 1}
               </p>
@@ -39,7 +37,7 @@ export default function Brand() {
                 {item.title}
               </Heading>
               <p className="mt-4 leading-7 text-white/62">{item.body}</p>
-            </article>
+            </Card>
           ))}
         </div>
       </Container>

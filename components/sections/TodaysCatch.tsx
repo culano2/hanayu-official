@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Badge from "@/components/ui/Badge";
+import Card from "@/components/ui/Card";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
+import Stat from "@/components/ui/Stat";
 import { todaysCatch } from "@/data/catch";
 
 export default function TodaysCatch() {
@@ -22,10 +24,7 @@ export default function TodaysCatch() {
 
           <dl className="grid grid-cols-2 gap-4 border-y border-[#031320]/15 py-6">
             {todaysCatch.stats.map((stat) => (
-              <div key={stat.label}>
-                <dt className="text-sm text-[#506474]">{stat.label}</dt>
-                <dd className="mt-2 text-3xl font-semibold">{stat.value}</dd>
-              </div>
+              <Stat key={stat.label} label={stat.label} value={stat.value} />
             ))}
           </dl>
         </div>
@@ -43,10 +42,7 @@ export default function TodaysCatch() {
 
           <div className="grid gap-3 md:grid-cols-3">
             {todaysCatch.items.map((item) => (
-              <article
-                key={item.name}
-                className="rounded-md border border-[#031320]/12 bg-white p-5 shadow-[0_18px_50px_rgba(3,19,32,0.06)]"
-              >
+              <Card key={item.name}>
                 <Badge className="tracking-[0.22em]" tone="light">
                   {item.status}
                 </Badge>
@@ -56,7 +52,7 @@ export default function TodaysCatch() {
                 <p className="mt-3 text-sm leading-6 text-[#506474]">
                   {item.detail}
                 </p>
-              </article>
+              </Card>
             ))}
           </div>
         </div>
