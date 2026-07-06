@@ -1,6 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
-import LiveCatch from "@/components/sections/LiveCatch";
+import TodaysCatch from "@/components/sections/TodaysCatch";
 
 export default function Home() {
   return (

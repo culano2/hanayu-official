@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
+/* ==========================
+   HANAYU Design System
+========================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+  /* Brand Colors */
+  --hanayu-navy: #031320;
+  --hanayu-blue: #0A3A5A;
+  --hanayu-gold: #C89A4B;
+  --hanayu-light: #F7F6F3;
+  --hanayu-white: #FFFFFF;
+
+  /* Default */
+  --background: var(--hanayu-navy);
+  --foreground: var(--hanayu-white);
+
+  /* Radius */
+  --radius: 18px;
+
 }
 
 @theme inline {
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: Arial, Helvetica, sans-serif;
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html{
+
+  scroll-behavior:smooth;
+
+}
+
+body{
+
+  background:var(--background);
+
+  color:var(--foreground);
+
+  overflow-x:hidden;
+
+  font-family:Arial, Helvetica, sans-serif;
+
+}
+
+a{
+
+  text-decoration:none;
+
+  color:inherit;
+
+}
+
+button{
+
+  cursor:pointer;
+
+}
+
+img{
+
+  display:block;
+
+  max-width:100%;
+
 }
