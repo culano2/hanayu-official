@@ -48,7 +48,10 @@ export default function Hero() {
           <Heading as="h1" className="mt-6" size="hero">
             {hero.title}
           </Heading>
-          <p className="mt-8 max-w-2xl text-xl leading-8 text-[#F7F6F3] sm:text-2xl sm:leading-10">
+          <p className="mt-7 max-w-3xl text-2xl font-semibold leading-9 text-white sm:text-4xl sm:leading-tight">
+            {hero.subtitle}
+          </p>
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-[#F7F6F3] sm:text-2xl sm:leading-10">
             {hero.body}
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
