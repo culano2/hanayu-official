@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Badge from "@/components/ui/Badge";
-import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import Heading from "@/components/ui/Heading";
+import Divider from "@/components/ui/Divider";
+import Eyebrow from "@/components/ui/Eyebrow";
 import Stat from "@/components/ui/Stat";
+import PremiumButton from "@/components/ui/PremiumButton";
 import { brand } from "@/data/brand";
 
 export default function Hero() {
@@ -31,36 +31,41 @@ export default function Hero() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-center soft-reveal"
           />
         )}
       </div>
 
       <div
-        className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,19,32,0.96)_0%,rgba(3,19,32,0.78)_38%,rgba(3,19,32,0.22)_76%),linear-gradient(180deg,rgba(3,19,32,0.18)_0%,rgba(3,19,32,0.88)_100%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_34%,rgba(200,154,75,0.18),transparent_30%),linear-gradient(90deg,rgba(3,19,32,0.98)_0%,rgba(3,19,32,0.82)_42%,rgba(3,19,32,0.24)_78%),linear-gradient(180deg,rgba(3,19,32,0.12)_0%,rgba(3,19,32,0.92)_100%)]"
         aria-hidden="true"
         data-hero-overlay
       />
 
-      <Container className="flex min-h-screen flex-col justify-end pb-12 pt-32 sm:pb-16 lg:pb-20">
-        <div className="max-w-4xl">
-          <Badge>{brand.eyebrow}</Badge>
-          <Heading as="h1" className="mt-6" size="hero">
+      <Container className="flex min-h-screen flex-col justify-end pb-10 pt-32 sm:pb-14 lg:pb-16">
+        <div className="fade-up max-w-4xl">
+          <Eyebrow>{brand.eyebrow}</Eyebrow>
+          <h1 className="mt-6 text-6xl font-semibold leading-[0.88] tracking-[0.12em] text-white sm:text-8xl lg:text-9xl">
             {hero.title}
-          </Heading>
+          </h1>
+          <Divider className="mt-7 max-w-24 bg-[#C89A4B]" />
           <p className="mt-7 max-w-3xl text-2xl font-semibold leading-9 text-white sm:text-4xl sm:leading-tight">
             {hero.subtitle}
           </p>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-[#F7F6F3] sm:text-2xl sm:leading-10">
+          <p className="mt-6 max-w-2xl text-xl leading-9 text-[#F7F6F3] sm:text-2xl sm:leading-10">
             {hero.body}
           </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Button href={hero.primaryCta.href} size="lg" variant="primary">
+          <div className="mt-11 flex flex-col gap-3 sm:flex-row">
+            <PremiumButton href={hero.primaryCta.href} size="lg" variant="primary">
               {hero.primaryCta.label}
-            </Button>
-            <Button href={hero.secondaryCta.href} size="lg" variant="secondary">
+            </PremiumButton>
+            <PremiumButton
+              href={hero.secondaryCta.href}
+              size="lg"
+              variant="secondary"
+            >
               {hero.secondaryCta.label}
-            </Button>
+            </PremiumButton>
           </div>
         </div>
 
@@ -76,6 +81,15 @@ export default function Hero() {
             />
           ))}
         </dl>
+
+        <a
+          href="#story"
+          className="mt-8 inline-flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-white/56 transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+          aria-label="Scroll to brand story"
+        >
+          <span className="h-8 w-px bg-[#C89A4B]/70" aria-hidden="true" />
+          Scroll
+        </a>
       </Container>
     </section>
   );

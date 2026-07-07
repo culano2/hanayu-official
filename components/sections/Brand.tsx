@@ -9,23 +9,23 @@ export default function Brand() {
   const { standard } = brand;
 
   return (
-    <Section id={standard.id} tone="dark">
+    <Section id={standard.id} className="border-t border-white/10" tone="dark">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div>
             <Badge>{standard.eyebrow}</Badge>
-            <Heading as="h2" className="mt-5">
+            <Heading as="h2" className="mt-5 max-w-2xl">
               {standard.title}
             </Heading>
           </div>
-          <p className="max-w-2xl text-lg leading-8 text-white/68">
+          <p className="max-w-2xl text-lg leading-9 text-white/68">
             {standard.body}
           </p>
         </div>
 
         <div
           id={standard.anchorId}
-          className="mt-14 grid gap-5 md:grid-cols-3"
+          className="mt-16 grid gap-5 md:grid-cols-3"
           aria-label={`${brand.name} quality standards`}
         >
           {standard.items.map((item, index) => (

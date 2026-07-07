@@ -20,7 +20,10 @@ export default function Section({
   ...props
 }: SectionProps) {
   return (
-    <section className={`${toneClasses[tone]} py-20 sm:py-28 ${className}`} {...props}>
+    <section
+      className={`${toneClasses[tone]} py-20 sm:py-28 lg:py-36 ${className}`}
+      {...props}
+    >
       {children}
     </section>
   );
