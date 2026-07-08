@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Eyebrow from "@/components/ui/Eyebrow";
-import Heading from "@/components/ui/Heading";
+import SectionTitle from "@/components/ui/SectionTitle";
 
 type SectionHeaderTone = "dark" | "light";
 
@@ -24,13 +24,14 @@ export default function SectionHeader({
   return (
     <div className={className}>
       <Eyebrow tone={isDarkText ? "light" : "gold"}>{eyebrow}</Eyebrow>
-      <Heading
+      <SectionTitle
         as="h2"
-        className="mt-5 max-w-2xl text-[2rem] leading-tight sm:text-5xl"
+        className="mt-5 max-w-2xl"
+        size="section"
         tone={isDarkText ? "dark" : "light"}
       >
         {heading}
-      </Heading>
+      </SectionTitle>
       {body ? (
         <div
           className={`mt-7 max-w-2xl text-base leading-8 sm:text-lg sm:leading-9 ${

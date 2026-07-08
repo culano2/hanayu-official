@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Container from "@/components/ui/Container";
+import Logo from "@/components/ui/Logo";
 import PremiumButton from "@/components/ui/PremiumButton";
 import { brand } from "@/data/brand";
 import { primaryNavigation } from "@/data/navigation";
@@ -15,19 +16,13 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#031320]/58 shadow-[0_18px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl">
       <Container className="flex h-20 items-center justify-between sm:h-24">
-        <Link
+        <Logo
+          ariaLabel={`${brand.name} home`}
           href={brand.homeHref}
-          aria-label={`${brand.name} home`}
-          className="flex flex-col leading-none transition-opacity duration-300 hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+          name={brand.name}
           onClick={closeMenu}
-        >
-          <span className="text-xl font-semibold tracking-[0.28em] text-white sm:text-2xl">
-            {brand.name}
-          </span>
-          <span className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.32em] text-[#C89A4B]">
-            {brand.origin}
-          </span>
-        </Link>
+          origin={brand.origin}
+        />
 
         <nav
           aria-label="Primary navigation"

@@ -7,10 +7,16 @@
 :root {
 
   /* Brand Colors */
-  --hanayu-navy: #031320;
-  --hanayu-blue: #0A3A5A;
-  --hanayu-gold: #C89A4B;
-  --hanayu-light: #F7F6F3;
+  --hanayu-deep-ocean: #031320;
+  --hanayu-midnight-blue: #0A2438;
+  --hanayu-ocean-slate: #506474;
+  --hanayu-premium-gold: #C89A4B;
+  --hanayu-pearl-white: #F7F6F3;
+  --hanayu-mist-gray: #D8DEE2;
+  --hanayu-navy: var(--hanayu-deep-ocean);
+  --hanayu-blue: var(--hanayu-midnight-blue);
+  --hanayu-gold: var(--hanayu-premium-gold);
+  --hanayu-light: var(--hanayu-pearl-white);
   --hanayu-white: #FFFFFF;
 
   /* Default */

@@ -1,9 +1,12 @@
 import Image from "next/image";
+import BrandDivider from "@/components/ui/BrandDivider";
 import Container from "@/components/ui/Container";
-import Divider from "@/components/ui/Divider";
 import Eyebrow from "@/components/ui/Eyebrow";
-import PremiumButton from "@/components/ui/PremiumButton";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import SectionTitle from "@/components/ui/SectionTitle";
 import Stat from "@/components/ui/Stat";
+import Tagline from "@/components/ui/Tagline";
 
 type ImageHeroProps = {
   body: string;
@@ -68,13 +71,13 @@ export default function ImageHero({
       <Container className="flex min-h-[100svh] flex-col justify-end pb-9 pt-32 sm:pb-12 lg:pb-14">
         <div className="fade-up max-w-3xl">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="mt-6 text-6xl font-semibold leading-[0.88] tracking-[0.12em] text-white sm:text-8xl lg:text-9xl">
+          <SectionTitle as="h1" className="mt-6" size="hero" tone="light">
             {title}
-          </h1>
-          <Divider className="mt-7 max-w-24 bg-[#C89A4B]" />
-          <p className="mt-7 max-w-2xl text-2xl font-semibold leading-9 text-white sm:text-4xl sm:leading-tight">
+          </SectionTitle>
+          <BrandDivider className="mt-7" />
+          <Tagline className="mt-7 max-w-2xl" size="lg" tone="light">
             {tagline}
-          </p>
+          </Tagline>
           <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-white/86 sm:text-2xl sm:leading-9">
             {subtitle}
           </p>
@@ -82,12 +85,12 @@ export default function ImageHero({
             {body}
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <PremiumButton href={primaryCta.href} size="lg" variant="primary">
+            <PrimaryButton href={primaryCta.href} size="lg">
               {primaryCta.label}
-            </PremiumButton>
-            <PremiumButton href={secondaryCta.href} size="lg" variant="secondary">
+            </PrimaryButton>
+            <SecondaryButton href={secondaryCta.href} size="lg">
               {secondaryCta.label}
-            </PremiumButton>
+            </SecondaryButton>
           </div>
         </div>
 

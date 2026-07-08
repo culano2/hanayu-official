@@ -73,6 +73,13 @@ export const brandAssets = {
   },
 } as const;
 
+export const brandMessaging = {
+  tagline: "把海鮮，做成精品。",
+  promise: "一年只有一季，值得等待。",
+  craftMessage: "每一尾，都由職人親手釣起。",
+  position: "台灣精品海鮮品牌，\n來自澎湖花嶼海域。",
+} as const;
+
 export const brand = {
   name: "HANAYU",
   origin: "Huayu Island",
@@ -80,9 +87,9 @@ export const brand = {
   homeHref: "/",
   hero: {
     title: "HANAYU",
-    tagline: "把海鮮，做成精品。",
+    tagline: brandMessaging.tagline,
     subtitle: "花嶼海域．職人手釣．劍尖槍鎖管",
-    body: "一年只有一季，值得等待。",
+    body: brandMessaging.promise,
     primaryCta: {
       href: "#story",
       label: "探索品牌故事",
