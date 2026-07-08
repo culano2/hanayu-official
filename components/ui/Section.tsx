@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import FadeUp from "@/components/motion/FadeUp";
 
 type SectionTone = "dark" | "light" | "deep";
 
@@ -21,10 +22,10 @@ export default function Section({
 }: SectionProps) {
   return (
     <section
-      className={`${toneClasses[tone]} py-20 sm:py-28 lg:py-40 ${className}`}
+      className={`${toneClasses[tone]} py-24 sm:py-32 lg:py-44 ${className}`}
       {...props}
     >
-      {children}
+      <FadeUp>{children}</FadeUp>
     </section>
   );
 }

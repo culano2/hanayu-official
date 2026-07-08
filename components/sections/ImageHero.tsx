@@ -1,4 +1,6 @@
-import Image from "next/image";
+import FadeIn from "@/components/motion/FadeIn";
+import FadeUp from "@/components/motion/FadeUp";
+import HeroScrollImage from "@/components/motion/HeroScrollImage";
 import BrandDivider from "@/components/ui/BrandDivider";
 import Container from "@/components/ui/Container";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -51,13 +53,12 @@ export default function ImageHero({
             <source src={videoSrc} type="video/mp4" />
           </video>
         ) : (
-          <Image
+          <HeroScrollImage
             src={imageSrc}
             alt={imageAlt}
-            fill
             priority
             sizes="100vw"
-            className="object-cover object-center soft-reveal"
+            imageClassName="object-cover object-center"
           />
         )}
       </div>
@@ -69,43 +70,59 @@ export default function ImageHero({
       />
 
       <Container className="flex min-h-[100svh] flex-col justify-end pb-9 pt-32 sm:pb-12 lg:pb-14">
-        <div className="fade-up max-w-3xl">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <SectionTitle as="h1" className="mt-6" size="hero" tone="light">
-            {title}
-          </SectionTitle>
-          <BrandDivider className="mt-7" />
-          <Tagline className="mt-7 max-w-2xl" size="lg" tone="light">
-            {tagline}
-          </Tagline>
-          <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-white/86 sm:text-2xl sm:leading-9">
-            {subtitle}
-          </p>
-          <p className="mt-5 max-w-xl text-lg leading-8 text-[#F7F6F3] sm:text-xl sm:leading-9">
-            {body}
-          </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <PrimaryButton href={primaryCta.href} size="lg">
-              {primaryCta.label}
-            </PrimaryButton>
-            <SecondaryButton href={secondaryCta.href} size="lg">
-              {secondaryCta.label}
-            </SecondaryButton>
-          </div>
+        <div className="max-w-3xl">
+          <FadeUp duration={820}>
+            <Eyebrow>{eyebrow}</Eyebrow>
+          </FadeUp>
+          <FadeUp delay={120} duration={860}>
+            <SectionTitle as="h1" className="mt-6" size="hero" tone="light">
+              {title}
+            </SectionTitle>
+          </FadeUp>
+          <FadeIn delay={220} duration={820}>
+            <BrandDivider className="mt-7" />
+          </FadeIn>
+          <FadeUp delay={260} duration={860}>
+            <Tagline className="mt-7 max-w-2xl" size="lg" tone="light">
+              {tagline}
+            </Tagline>
+          </FadeUp>
+          <FadeUp delay={340} duration={820}>
+            <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-white/86 sm:text-2xl sm:leading-9">
+              {subtitle}
+            </p>
+          </FadeUp>
+          <FadeUp delay={420} duration={820}>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-[#F7F6F3] sm:text-xl sm:leading-9">
+              {body}
+            </p>
+          </FadeUp>
+          <FadeUp delay={520} duration={780}>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <PrimaryButton href={primaryCta.href} size="lg">
+                {primaryCta.label}
+              </PrimaryButton>
+              <SecondaryButton href={secondaryCta.href} size="lg">
+                {secondaryCta.label}
+              </SecondaryButton>
+            </div>
+          </FadeUp>
         </div>
 
-        <dl className="mt-12 grid max-w-3xl grid-cols-1 border-y border-white/14 sm:grid-cols-3">
-          {metrics.map((metric) => (
-            <Stat
-              key={metric.label}
-              className="border-white/14 py-5 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0"
-              label={metric.label}
-              size="sm"
-              tone="dark"
-              value={metric.value}
-            />
-          ))}
-        </dl>
+        <FadeIn delay={620} duration={900}>
+          <dl className="mt-12 grid max-w-3xl grid-cols-1 border-y border-white/14 sm:grid-cols-3">
+            {metrics.map((metric) => (
+              <Stat
+                key={metric.label}
+                className="border-white/14 py-5 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0"
+                label={metric.label}
+                size="sm"
+                tone="dark"
+                value={metric.value}
+              />
+            ))}
+          </dl>
+        </FadeIn>
 
         <a
           href="#story"

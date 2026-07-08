@@ -5,13 +5,13 @@ type ButtonVariant = "primary" | "secondary" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
 const baseClasses =
-  "inline-flex items-center justify-center border font-bold uppercase tracking-[0.18em] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 disabled:pointer-events-none disabled:opacity-50";
+  "group relative isolate inline-flex items-center justify-center overflow-hidden border font-bold uppercase tracking-[0.18em] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#C89A4B] before:transition-transform before:duration-500 before:ease-[cubic-bezier(0.22,1,0.36,1)] hover:before:scale-x-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none motion-reduce:before:transition-none";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "border-[#C89A4B] bg-[#C89A4B] text-[#031320] hover:border-[#F7F6F3] hover:bg-[#F7F6F3] focus-visible:outline-[#F7F6F3]",
+    "border-[#C89A4B] bg-[#C89A4B] text-[#031320] hover:border-[#F7F6F3] focus-visible:outline-[#F7F6F3]",
   secondary:
-    "border-white/35 bg-transparent text-white hover:border-white hover:bg-white hover:text-[#031320] focus-visible:outline-[#F7F6F3]",
+    "border-white/35 bg-transparent text-white hover:border-[#C89A4B] hover:text-[#031320] focus-visible:outline-[#F7F6F3]",
   ghost:
     "border-transparent bg-transparent text-white/72 hover:text-white focus-visible:outline-[#C89A4B]",
 };
@@ -68,7 +68,7 @@ export default function Button(props: ButtonProps) {
         rel={props.rel}
         target={props.target}
       >
-        {children}
+        <span className="relative z-10">{children}</span>
       </Link>
     );
   }
@@ -83,7 +83,7 @@ export default function Button(props: ButtonProps) {
       onClick={buttonProps.onClick}
       type={buttonProps.type ?? "button"}
     >
-      {children}
+      <span className="relative z-10">{children}</span>
     </button>
   );
 }

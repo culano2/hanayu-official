@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
 import PremiumButton from "@/components/ui/PremiumButton";
@@ -10,11 +10,27 @@ import { primaryNavigation } from "@/data/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 12);
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#031320]/58 shadow-[0_18px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        isScrolled || isOpen
+          ? "border-white/10 bg-[#031320]/66 shadow-[0_18px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl"
+          : "border-transparent bg-transparent shadow-none backdrop-blur-0"
+      }`}
+    >
       <Container className="flex h-20 items-center justify-between sm:h-24">
         <Logo
           ariaLabel={`${brand.name} home`}

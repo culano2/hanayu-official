@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import FadeIn from "@/components/motion/FadeIn";
+import FadeUp from "@/components/motion/FadeUp";
+import HeroScrollImage from "@/components/motion/HeroScrollImage";
 import BrandDivider from "@/components/ui/BrandDivider";
 import Container from "@/components/ui/Container";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -32,13 +35,13 @@ export default function ProductPage() {
       <Navbar />
       <main>
         <section className="relative isolate flex min-h-[100svh] overflow-hidden bg-[#031320]">
-          <Image
+          <HeroScrollImage
             alt={productHeroImage.alt}
-            className="absolute inset-0 -z-20 h-full w-full object-cover object-[58%_center]"
-            fill
             priority
             sizes="100vw"
             src={productHeroImage.src}
+            imageClassName="object-cover object-[58%_center]"
+            className="-z-20"
           />
           <div
             aria-hidden="true"
@@ -47,24 +50,34 @@ export default function ProductPage() {
 
           <Container className="flex min-h-[100svh] flex-col justify-end px-7 pb-14 pt-36 sm:px-10 sm:pb-18 lg:px-20 lg:pb-24 xl:px-24">
             <div className="max-w-3xl">
-              <Eyebrow>HANAYU PRODUCT</Eyebrow>
-              <SectionTitle
-                as="h1"
-                className="mt-9 max-w-4xl"
-                size="page"
-                tone="light"
-              >
-                劍尖槍鎖管
-              </SectionTitle>
-              <BrandDivider className="mt-9" />
-              <Tagline className="mt-9 max-w-2xl" size="lg" tone="light">
-                把海鮮，做成精品。
-              </Tagline>
-              <div className="mt-12">
-                <PrimaryButton href="/" size="lg">
-                  返回首頁
-                </PrimaryButton>
-              </div>
+              <FadeUp duration={820}>
+                <Eyebrow>HANAYU PRODUCT</Eyebrow>
+              </FadeUp>
+              <FadeUp delay={120} duration={860}>
+                <SectionTitle
+                  as="h1"
+                  className="mt-9 max-w-4xl"
+                  size="page"
+                  tone="light"
+                >
+                  劍尖槍鎖管
+                </SectionTitle>
+              </FadeUp>
+              <FadeIn delay={220} duration={820}>
+                <BrandDivider className="mt-9" />
+              </FadeIn>
+              <FadeUp delay={280} duration={860}>
+                <Tagline className="mt-9 max-w-2xl" size="lg" tone="light">
+                  把海鮮，做成精品。
+                </Tagline>
+              </FadeUp>
+              <FadeUp delay={420} duration={780}>
+                <div className="mt-12">
+                  <PrimaryButton href="/" size="lg">
+                    返回首頁
+                  </PrimaryButton>
+                </div>
+              </FadeUp>
             </div>
           </Container>
         </section>
@@ -88,13 +101,13 @@ export default function ProductPage() {
         <Section id="giant-size" tone="light">
           <Container>
             <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-[#031320]/10 bg-[#F7F6F3] shadow-[0_28px_90px_rgba(3,19,32,0.18)] sm:aspect-[16/11] lg:aspect-[4/5]">
+              <div className="group relative aspect-[4/5] overflow-hidden rounded-lg border border-[#031320]/10 bg-[#F7F6F3] shadow-[0_28px_90px_rgba(3,19,32,0.18)] transition-shadow duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_34px_100px_rgba(3,19,32,0.26)] sm:aspect-[16/11] lg:aspect-[4/5]">
                 <div className="absolute inset-0 flex items-center justify-center bg-[#F7F6F3] px-8 text-center text-sm font-bold uppercase tracking-[0.18em] text-[#506474]">
                   Product image loading
                 </div>
                 <Image
                   alt={giantSizeImage.alt}
-                  className="relative z-10 h-full w-full object-contain object-center p-6 sm:p-10"
+                  className="relative z-10 h-full w-full object-contain object-center p-6 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:p-10"
                   fill
                   sizes="(min-width: 1024px) 52vw, 100vw"
                   src={giantSizeImage.src}
