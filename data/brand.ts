@@ -80,15 +80,16 @@ export const brand = {
   homeHref: "/",
   hero: {
     title: "HANAYU",
+    tagline: "把海鮮，做成精品。",
     subtitle: "花嶼海域．職人手釣．劍尖槍鎖管",
-    body: "一年只有一季，值得等待。每一尾，都由職人親手釣起。",
+    body: "一年只有一季，值得等待。",
     primaryCta: {
       href: "#story",
       label: "探索品牌故事",
     },
     secondaryCta: {
       href: "#featured-product",
-      label: "產品介紹",
+      label: "今日漁獲",
     },
     media: {
       imageSrc: brandAssets.huayuSunset.src,
@@ -98,7 +99,7 @@ export const brand = {
     metrics: [
       { value: "6-9 月", label: "捕撈季節" },
       { value: "手釣", label: "漁法" },
-      { value: "-18°C", label: "冷凍保存" },
+      { value: "-18°C", label: "保存溫度" },
     ],
   },
   story: {
@@ -116,8 +117,8 @@ export const brand = {
     harbor: {
       id: "harbor",
       eyebrow: "Harbor Story",
-      title: "從港口開始的風味",
-      body: "清晨的港口，是 HANAYU 與花嶼海域相遇的第一站。船隻、海風與等待，都讓一季的漁獲有了清楚的時間感。",
+      title: "從港口開始的等待",
+      body: "清晨的港口，是 HANAYU 對品質承諾的第一個現場。船隻、漁具與時間都被謹慎準備，為的是讓每一批漁獲從出海之前，就被好好對待。",
       image: brandAssets.harborBoat,
     },
     nightFishing: {
@@ -135,22 +136,23 @@ export const brand = {
       id: "promise",
       eyebrow: "Promise",
       title: "我們的承諾",
+      image: brandAssets.productDetail,
       items: [
         {
           title: "職人手釣",
-          body: "以人工手釣方式選擇漁獲，保留每一尾的完整狀態。",
+          body: "由熟悉海況的漁人親手釣起，降低損傷，保留漁獲完整狀態。",
         },
         {
           title: "船上立即處理",
-          body: "捕撈後即時整理與低溫控管，縮短品質流失的時間。",
+          body: "捕撈後立即整理與控溫，讓鮮度從第一時間開始被守住。",
         },
         {
           title: "真空急速冷凍",
-          body: "以真空包裝與急速冷凍保存花嶼海域的風味。",
+          body: "以真空包裝與急速冷凍保存風味，讓產地品質穩定抵達餐桌。",
         },
         {
           title: "一年僅有一季",
-          body: "尊重季節與海況，不以全年供應稀釋產地價值。",
+          body: "尊重季節與海洋節奏，只在最適合的時間提供。",
         },
       ],
     },
@@ -178,8 +180,8 @@ export const brand = {
     ocean: {
       id: "ocean",
       eyebrow: "Ocean Atmosphere",
-      title: "海流、岩岸與光",
-      body: "花嶼的風味不是被製造出來的，而是由海流、岩岸、季節與職人的等待共同形成。",
+      title: "海流留下的風味",
+      body: "花嶼的海，不只是背景。它決定了季節、光線與漁獲的節奏，也讓劍尖槍鎖管擁有乾淨而鮮明的產地個性。",
       image: brandAssets.oceanRocks,
       secondaryImage: brandAssets.underwaterLight,
     },

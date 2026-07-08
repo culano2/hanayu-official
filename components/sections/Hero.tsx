@@ -14,6 +14,7 @@ export default function Hero() {
       primaryCta={hero.primaryCta}
       secondaryCta={hero.secondaryCta}
       subtitle={hero.subtitle}
+      tagline={hero.tagline}
       title={hero.title}
       videoSrc={hero.media.videoSrc}
     />

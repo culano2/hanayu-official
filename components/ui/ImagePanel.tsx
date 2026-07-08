@@ -28,7 +28,7 @@ export default function ImagePanel({
 }: ImagePanelProps) {
   return (
     <div
-      className={`group relative aspect-[4/3] overflow-hidden rounded-md ${toneClasses[tone]} ${className}`}
+      className={`group relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 ${toneClasses[tone]} ${className}`}
     >
       <Image
         src={src}
@@ -36,11 +36,11 @@ export default function ImagePanel({
         fill
         priority={priority}
         sizes={sizes}
-        className="object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
+        className="object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
       />
       {overlay ? (
         <div
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,19,32,0.04)_0%,rgba(3,19,32,0.34)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,19,32,0.02)_0%,rgba(3,19,32,0.24)_100%)]"
           aria-hidden="true"
         />
       ) : null}

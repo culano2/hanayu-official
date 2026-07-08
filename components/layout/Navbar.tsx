@@ -13,8 +13,8 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#031320]/68 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-2xl">
-      <Container className="flex h-24 items-center justify-between">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#031320]/58 shadow-[0_18px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl">
+      <Container className="flex h-20 items-center justify-between sm:h-24">
         <Link
           href={brand.homeHref}
           aria-label={`${brand.name} home`}
@@ -31,13 +31,13 @@ export default function Navbar() {
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-10 text-sm font-semibold tracking-[0.14em] text-white/70 lg:flex"
+          className="hidden items-center gap-9 text-sm font-semibold tracking-[0.14em] text-white/72 lg:flex"
         >
           {primaryNavigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="relative py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#C89A4B] after:transition-all after:duration-300 hover:text-white hover:after:w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
+              className="relative py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:-translate-x-1/2 after:bg-[#C89A4B] after:transition-all after:duration-300 hover:text-white hover:after:w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
             >
               {item.label}
             </Link>

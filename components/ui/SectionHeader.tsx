@@ -26,14 +26,14 @@ export default function SectionHeader({
       <Eyebrow tone={isDarkText ? "light" : "gold"}>{eyebrow}</Eyebrow>
       <Heading
         as="h2"
-        className="mt-5 max-w-2xl"
+        className="mt-5 max-w-2xl text-[2rem] leading-tight sm:text-5xl"
         tone={isDarkText ? "dark" : "light"}
       >
         {heading}
       </Heading>
       {body ? (
         <div
-          className={`mt-6 max-w-2xl text-lg leading-9 ${
+          className={`mt-7 max-w-2xl text-base leading-8 sm:text-lg sm:leading-9 ${
             isDarkText ? "text-[#314756]" : "text-white/68"
           }`}
         >

@@ -21,7 +21,7 @@ export default function Card({
 }: CardProps) {
   return (
     <article
-      className={`rounded-md border p-5 transition-all duration-300 ${toneClasses[tone]} ${className}`}
+      className={`rounded-lg border p-5 transition-all duration-300 ${toneClasses[tone]} ${className}`}
       {...props}
     >
       {children}
