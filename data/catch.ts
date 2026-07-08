@@ -1,12 +1,11 @@
+import { brandAssets } from "@/data/brand";
+
 export const todaysCatch = {
   id: "catch",
   eyebrow: "Today's Catch",
   title: "今日漁獲",
   body: "一年僅有一季的花嶼海域劍尖槍鎖管，以職人手釣、船上即時處理與真空急速冷凍，保留最接近產地的風味。",
-  image: {
-    src: "/images/todays-catch.png",
-    alt: "Fresh fish and shellfish sorted on ice at the dock",
-  },
+  image: brandAssets.productDetail,
   stats: [
     { value: "6-9 月", label: "捕撈季節" },
     { value: "1kg", label: "真空冷凍包裝" },

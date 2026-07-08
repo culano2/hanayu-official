@@ -1,4 +1,8 @@
 export const brandAssets = {
+  huayuAerial: {
+    src: "/images/huayu/01-01_Huayu_Aerial.png",
+    alt: "Aerial view of Huayu Island and surrounding sea",
+  },
   huayuSunset: {
     src: "/images/huayu/01-02_Huayu_Sunset.png",
     alt: "Huayu Island coastline at sunset with deep ocean color",
@@ -11,17 +15,53 @@ export const brandAssets = {
     src: "/images/harbor/02-01_Fishing_Boat_Harbor.png",
     alt: "Fishing boat resting in a quiet island harbor",
   },
+  boatDeckSunrise: {
+    src: "/images/harbor/02-02_Boat_Deck_Sunrise.png",
+    alt: "Fishing boat deck at sunrise after returning to harbor",
+  },
+  nightPort: {
+    src: "/images/harbor/02-03_Night_Port.png",
+    alt: "Quiet fishing port at night before departure",
+  },
+  artisanFisherman: {
+    src: "/images/night-fishing/03-01_Artisan_Fisherman.png",
+    alt: "Artisan fisherman preparing night fishing gear",
+  },
   nightFishingBoat: {
     src: "/images/night-fishing/03-02_Night_Fishing_Boat.png",
     alt: "Fishing boat working at night near Huayu Island",
+  },
+  squidOnLine: {
+    src: "/images/night-fishing/03-03_Squid_On_Line.png",
+    alt: "Swordtip squid caught by line during night fishing",
   },
   productHero: {
     src: "/images/product/04-01_Product_Hero.png",
     alt: "HANAYU swordtip squid product presented on ice",
   },
+  threeSquids: {
+    src: "/images/product/04-02_Three_Squids.png",
+    alt: "Three premium swordtip squid arranged for product display",
+  },
   productDetail: {
     src: "/images/product/04-03_Product_Detail.png",
     alt: "Close detail of premium seafood prepared for frozen packaging",
+  },
+  premiumGiftBox: {
+    src: "/images/packaging/05-01_Premium_Gift_Box.png",
+    alt: "HANAYU premium gift box packaging",
+  },
+  vacuumPackage: {
+    src: "/images/packaging/05-02_Vacuum_Package.png",
+    alt: "HANAYU vacuum frozen package",
+  },
+  giftBoxOpen: {
+    src: "/images/packaging/05-03_Gift_Box_Open.png",
+    alt: "Open HANAYU gift box packaging",
+  },
+  huayuSunriseSeascape: {
+    src: "/images/ocean/06-01_Huayu_Sunrise_Seascape.png",
+    alt: "Sunrise seascape around Huayu Island",
   },
   oceanRocks: {
     src: "/images/ocean/06-02_Ocean_Waves_On_Rocks.png",
