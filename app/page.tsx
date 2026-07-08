@@ -1,25 +1,41 @@
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
-import Brand from "@/components/sections/Brand";
 import FeaturedProduct from "@/components/sections/FeaturedProduct";
 import Hero from "@/components/sections/Hero";
+import ImageBanner from "@/components/sections/ImageBanner";
 import NightFishing from "@/components/sections/NightFishing";
+import OceanBanner from "@/components/sections/OceanBanner";
 import OurPromise from "@/components/sections/OurPromise";
-import TodaysCatch from "@/components/sections/TodaysCatch";
 import WhyHuayu from "@/components/sections/WhyHuayu";
+import { brand } from "@/data/brand";
 
 export default function Home() {
+  const { harbor, ocean } = brand.story;
+
   return (
     <>
       <Navbar />
       <main>
         <Hero />
         <WhyHuayu />
+        <ImageBanner
+          body={harbor.body}
+          eyebrow={harbor.eyebrow}
+          id={harbor.id}
+          image={harbor.image}
+          title={harbor.title}
+        />
         <NightFishing />
-        <OurPromise />
-        <TodaysCatch />
         <FeaturedProduct />
-        <Brand />
+        <OurPromise />
+        <OceanBanner
+          body={ocean.body}
+          eyebrow={ocean.eyebrow}
+          id={ocean.id}
+          image={ocean.image}
+          secondaryImage={ocean.secondaryImage}
+          title={ocean.title}
+        />
       </main>
       <Footer />
     </>
