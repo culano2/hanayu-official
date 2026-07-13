@@ -6,6 +6,8 @@ type CTASectionProps = {
   body: string;
   buttonText: string;
   href: string;
+  secondaryButtonText?: string;
+  secondaryHref?: string;
 };
 
 export default function CTASection({
@@ -14,18 +16,19 @@ export default function CTASection({
   body,
   buttonText,
   href,
+  secondaryButtonText,
+  secondaryHref,
 }: CTASectionProps) {
   return (
     <section className="bg-[#031320] px-8 py-32 text-center lg:px-16 lg:py-44">
       <div className="mx-auto max-w-4xl">
-
         {eyebrow && (
           <p className="mb-6 text-sm tracking-[0.35em] text-[#C89A4B]">
             {eyebrow}
           </p>
         )}
 
-        <h2 className="text-5xl font-light leading-tight text-white md:text-7xl">
+        <h2 className="whitespace-pre-line text-5xl font-light leading-tight text-white md:text-7xl">
           {title}
         </h2>
 
@@ -33,13 +36,23 @@ export default function CTASection({
           {body}
         </p>
 
-        <Link
-          href={href}
-          className="mt-12 inline-flex rounded-full border border-[#C89A4B] px-8 py-4 text-[#C89A4B] transition-all duration-300 hover:bg-[#C89A4B] hover:text-[#031320]"
-        >
-          {buttonText}
-        </Link>
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <Link
+            href={href}
+            className="rounded-full border border-[#C89A4B] px-8 py-4 text-[#C89A4B] transition-all duration-300 hover:bg-[#C89A4B] hover:text-[#031320]"
+          >
+            {buttonText}
+          </Link>
 
+          {secondaryButtonText && secondaryHref ? (
+            <Link
+              href={secondaryHref}
+              className="rounded-full border border-white/30 px-8 py-4 text-white transition-all duration-300 hover:bg-white hover:text-[#031320]"
+            >
+              {secondaryButtonText}
+            </Link>
+          ) : null}
+        </div>
       </div>
     </section>
   );
