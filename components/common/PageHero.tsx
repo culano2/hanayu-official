@@ -6,9 +6,11 @@ type PageHeroProps = {
   title: string;
   description: string;
   image: string;
+  imageAlt: string;
   ctaText?: string;
   ctaHref?: string;
   overlay?: "light" | "medium" | "dark";
+  overlayClassName?: string;
   align?: "left" | "center";
 };
 
@@ -23,25 +25,33 @@ export default function PageHero({
   title,
   description,
   image,
+  imageAlt,
   ctaText,
   ctaHref,
   overlay = "medium",
+  overlayClassName,
   align = "left",
 }: PageHeroProps) {
   const isCenter = align === "center";
+
+  const resolvedOverlayClassName =
+    overlayClassName ?? overlayClass[overlay];
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-[#031320]">
       <Image
         src={image}
-        alt={title}
+        alt={imageAlt}
         fill
         priority
         sizes="100vw"
         className="object-cover"
       />
 
-      <div className={`absolute inset-0 ${overlayClass[overlay]}`} />
+      <div
+        className={`absolute inset-0 ${resolvedOverlayClassName}`}
+        aria-hidden="true"
+      />
 
       <div
         className={`relative z-10 mx-auto w-full max-w-7xl px-8 lg:px-16 ${
@@ -53,7 +63,7 @@ export default function PageHero({
         </p>
 
         <h1
-          className={`text-5xl font-light leading-tight tracking-[0.08em] text-white md:text-7xl ${
+          className={`whitespace-pre-line text-5xl font-light leading-tight tracking-[0.08em] text-white md:text-7xl ${
             isCenter ? "mx-auto max-w-5xl" : "max-w-4xl"
           }`}
         >
