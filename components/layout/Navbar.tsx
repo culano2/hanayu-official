@@ -1,124 +1,69 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import Container from "@/components/ui/Container";
+import Link from "next/link";
+
+import DesktopNav from "@/components/navigation/DesktopNav";
 import Logo from "@/components/ui/Logo";
-import PremiumButton from "@/components/ui/PremiumButton";
-import { brand } from "@/data/brand";
-import { primaryNavigation } from "@/data/navigation";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  const closeMenu = () => setIsOpen(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const updateHeader = () => setIsScrolled(window.scrollY > 12);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+    };
 
-    updateHeader();
-    window.addEventListener("scroll", updateHeader, { passive: true });
+    onScroll();
 
-    return () => window.removeEventListener("scroll", updateHeader);
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        isScrolled || isOpen
-          ? "border-white/10 bg-[#031320]/66 shadow-[0_18px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl"
-          : "border-transparent bg-transparent shadow-none backdrop-blur-0"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "border-b border-white/10 bg-[#031320]/80 backdrop-blur-xl"
+          : "bg-transparent"
       }`}
     >
-      <Container className="flex h-20 items-center justify-between sm:h-24">
-        <Logo
-          ariaLabel={`${brand.name} home`}
-          href={brand.homeHref}
-          name={brand.name}
-          onClick={closeMenu}
-          origin={brand.origin}
-        />
-
-        <nav
-          aria-label="Primary navigation"
-          className="hidden items-center gap-9 text-sm font-semibold tracking-[0.14em] text-white/72 lg:flex"
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-8 lg:px-12">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-3"
         >
-          {primaryNavigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="relative py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:-translate-x-1/2 after:bg-[#C89A4B] after:transition-all after:duration-300 hover:text-white hover:after:w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+          <Logo />
 
-        <div className="hidden items-center gap-4 lg:flex">
-          <PremiumButton href="#contact" size="sm" variant="secondary">
-            Reserve
-          </PremiumButton>
-        </div>
-
-        <button
-          type="button"
-          aria-controls="mobile-navigation"
-          aria-expanded={isOpen}
-          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-          onClick={() => setIsOpen((current) => !current)}
-          className="flex h-11 w-11 items-center justify-center border border-white/18 bg-white/[0.03] text-white transition-colors duration-300 hover:border-[#C89A4B] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B] lg:hidden"
-        >
-          <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
-          <span className="flex w-5 flex-col gap-1.5" aria-hidden="true">
-            <span
-              className={`h-px bg-current transition-transform duration-300 ${
-                isOpen ? "translate-y-[7px] rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`h-px bg-current transition-opacity duration-300 ${
-                isOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`h-px bg-current transition-transform duration-300 ${
-                isOpen ? "-translate-y-[7px] -rotate-45" : ""
-              }`}
-            />
+          <span className="hidden text-lg font-light tracking-[0.28em] text-white md:block">
+            HANAYU
           </span>
-        </button>
-      </Container>
+        </Link>
 
-      <div
-        id="mobile-navigation"
-        className={`overflow-hidden border-t border-white/10 bg-[#031320]/96 transition-[max-height,opacity] duration-300 lg:hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <Container className="py-5">
-          <nav aria-label="Mobile navigation" className="grid gap-1">
-            {primaryNavigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                className="py-4 text-lg font-semibold tracking-[0.08em] text-white/82 transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <PremiumButton
-            href="#contact"
-            onClick={closeMenu}
-            className="mt-5 w-full"
-            size="lg"
-            variant="primary"
+        {/* Desktop Navigation */}
+        <DesktopNav />
+
+        {/* Right Side (預留功能) */}
+        <div className="hidden items-center gap-6 lg:flex">
+          <button
+            className="text-sm tracking-[0.2em] text-white/60 transition hover:text-white"
+            type="button"
           >
-            Reserve
-          </PremiumButton>
-        </Container>
+            EN
+          </button>
+
+          <button
+            className="text-white/60 transition hover:text-white"
+            type="button"
+            aria-label="Search (Coming Soon)"
+          >
+            ○
+          </button>
+        </div>
       </div>
     </header>
   );

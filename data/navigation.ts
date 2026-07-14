@@ -1,16 +1,50 @@
-export const primaryNavigation = [
-  { href: "/#story", label: "Story" },
-  { href: "/#harbor", label: "Harbor" },
-  { href: "/#night-fishing", label: "Fishing" },
-  { href: "/product", label: "Product" },
-  { href: "/#contact", label: "Contact" },
-] as const;
+export type NavigationItem = {
+  label: string;
+  href: string;
+};
 
-export const footerNavigation = [
-  { href: "/#story", label: "品牌故事" },
-  { href: "/#harbor", label: "港口" },
-  { href: "/#night-fishing", label: "職人夜釣" },
-  { href: "/product", label: "產品" },
-  { href: "/#promise", label: "承諾" },
-  { href: "/#contact", label: "Contact" },
-] as const;
+export const navigation: NavigationItem[] = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+  {
+    label: "Product",
+    href: "/product",
+  },
+  {
+    label: "Fishing",
+    href: "/fishing",
+  },
+  {
+    label: "Packaging",
+    href: "/packaging",
+  },
+];
+
+export const footerNavigation: NavigationItem[] = [
+  {
+    label: "首頁",
+    href: "/",
+  },
+  {
+    label: "關於 HANAYU",
+    href: "/about",
+  },
+  {
+    label: "產品",
+    href: "/product",
+  },
+  {
+    label: "職人手釣",
+    href: "/fishing",
+  },
+  {
+    label: "精品包裝",
+    href: "/packaging",
+  },
+];
