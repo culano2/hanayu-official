@@ -37,7 +37,7 @@ export default function Navbar() {
           href="/"
           className="flex items-center gap-3"
         >
-          <Logo />
+        <Logo name="HANAYU" origin="花嶼海洋" />
 
           <span className="hidden text-lg font-light tracking-[0.28em] text-white md:block">
             HANAYU

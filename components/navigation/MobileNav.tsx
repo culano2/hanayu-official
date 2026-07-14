@@ -11,10 +11,6 @@ export default function MobileNav() {
   const pathname = usePathname();
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
 
     return () => {
@@ -22,12 +18,17 @@ export default function MobileNav() {
     };
   }, [open]);
 
+  const closeMenu = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="lg:hidden">
       <button
         type="button"
         aria-label={open ? "關閉選單" : "開啟選單"}
         aria-expanded={open}
+        aria-controls="mobile-navigation"
         onClick={() => setOpen((current) => !current)}
         className="relative z-[70] flex h-11 w-11 items-center justify-center"
       >
@@ -55,10 +56,12 @@ export default function MobileNav() {
       </button>
 
       <div
+        id="mobile-navigation"
+        aria-hidden={!open}
         className={`fixed inset-0 z-[60] bg-[#031320] transition-all duration-500 ${
           open
             ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-4 opacity-0"
+            : "pointer-events-none invisible -translate-y-4 opacity-0"
         }`}
       >
         <nav
@@ -80,6 +83,8 @@ export default function MobileNav() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={closeMenu}
+                  aria-current={active ? "page" : undefined}
                   className={`text-3xl font-light tracking-[0.06em] transition-colors duration-300 ${
                     active
                       ? "text-[#C89A4B]"
