@@ -11,13 +11,13 @@ const heightClass = {
   screen: "min-h-screen",
   large: "min-h-[80vh]",
   medium: "min-h-[60vh]",
-};
+} as const;
 
 const overlayClass = {
   none: "",
   light: "bg-[#031320]/15",
   medium: "bg-[#031320]/35",
-};
+} as const;
 
 export default function FullWidthImage({
   src,
@@ -26,7 +26,9 @@ export default function FullWidthImage({
   overlay = "light",
 }: FullWidthImageProps) {
   return (
-    <section className={`relative overflow-hidden bg-[#031320] ${heightClass[height]}`}>
+    <section
+      className={`relative overflow-hidden bg-[#031320] ${heightClass[height]}`}
+    >
       <Image
         src={src}
         alt={alt}
@@ -36,7 +38,10 @@ export default function FullWidthImage({
       />
 
       {overlay !== "none" ? (
-        <div className={`absolute inset-0 ${overlayClass[overlay]}`} />
+        <div
+          className={`absolute inset-0 ${overlayClass[overlay]}`}
+          aria-hidden="true"
+        />
       ) : null}
     </section>
   );
