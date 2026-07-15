@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import CTASection from "@/components/common/CTASection";
 import ButterSeared from "@/components/dining/ButterSeared";
 import CharcoalGrill from "@/components/dining/CharcoalGrill";
@@ -8,12 +7,9 @@ import JapaneseStyle from "@/components/dining/JapaneseStyle";
 import SeafoodPasta from "@/components/dining/SeafoodPasta";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
-import { pageSeo } from "@/data/seo";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: pageSeo.dining.title,
-  description: pageSeo.dining.description,
-};
+export const metadata = createPageMetadata("dining");
 
 export default function DiningPage() {
   return (
