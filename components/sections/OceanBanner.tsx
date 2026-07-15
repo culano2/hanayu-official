@@ -7,8 +7,14 @@ type OceanBannerProps = {
   body: string;
   eyebrow: string;
   id: string;
-  image: { alt: string; src: string };
-  secondaryImage: { alt: string; src: string };
+  image: {
+    alt: string;
+    src: string;
+  };
+  secondaryImage: {
+    alt: string;
+    src: string;
+  };
   title: string;
 };
 
@@ -21,16 +27,23 @@ export default function OceanBanner({
   title,
 }: OceanBannerProps) {
   return (
-    <section id={id} className="bg-[#020B12] py-20 text-white sm:py-28 lg:py-36">
+    <section
+      id={id}
+      className="bg-[#020B12] py-20 text-white sm:py-28 lg:py-36"
+    >
       <Container>
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div>
             <Eyebrow>{eyebrow}</Eyebrow>
+
             <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
               {title}
             </h2>
           </div>
-          <p className="max-w-2xl text-lg leading-9 text-white/68">{body}</p>
+
+          <p className="max-w-2xl text-lg leading-9 text-white/68">
+            {body}
+          </p>
         </div>
 
         <Divider className="my-12" />
@@ -45,6 +58,7 @@ export default function OceanBanner({
               className="object-cover soft-reveal"
             />
           </div>
+
           <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#031320]">
             <Image
               src={secondaryImage.src}
