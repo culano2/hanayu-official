@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
@@ -12,7 +11,7 @@ import PrimaryButton from "@/components/ui/PrimaryButton";
 import Section from "@/components/ui/Section";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Tagline from "@/components/ui/Tagline";
-import { pageSeo } from "@/data/seo";
+import { createPageMetadata } from "@/lib/metadata";
 
 const productHeroImage = {
   src: "/images/product/04-01_Product_Hero.png",
@@ -24,10 +23,7 @@ const giantSizeImage = {
   alt: "三尾 HANAYU 劍尖槍鎖管產品展示",
 } as const;
 
-export const metadata: Metadata = {
-  title: pageSeo.product.title,
-  description: pageSeo.product.description,
-};
+export const metadata = createPageMetadata("product");
 
 export default function ProductPage() {
   return (
