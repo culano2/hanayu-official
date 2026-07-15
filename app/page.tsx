@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import FeaturedProduct from "@/components/sections/FeaturedProduct";
@@ -8,6 +9,14 @@ import OceanBanner from "@/components/sections/OceanBanner";
 import OurPromise from "@/components/sections/OurPromise";
 import WhyHuayu from "@/components/sections/WhyHuayu";
 import { brand } from "@/data/brand";
+import { pageSeo } from "@/data/seo";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: pageSeo.home.title,
+  },
+  description: pageSeo.home.description,
+};
 
 export default function Home() {
   const { harbor, ocean } = brand.story;
@@ -15,9 +24,11 @@ export default function Home() {
   return (
     <>
       <Navbar />
+
       <main>
         <Hero />
         <WhyHuayu />
+
         <ImageBanner
           body={harbor.body}
           eyebrow={harbor.eyebrow}
@@ -25,9 +36,11 @@ export default function Home() {
           image={harbor.image}
           title={harbor.title}
         />
+
         <NightFishing />
         <FeaturedProduct />
         <OurPromise />
+
         <OceanBanner
           body={ocean.body}
           eyebrow={ocean.eyebrow}
@@ -37,6 +50,7 @@ export default function Home() {
           title={ocean.title}
         />
       </main>
+
       <Footer />
     </>
   );
