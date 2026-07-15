@@ -35,15 +35,20 @@ export default function HeroScrollImage({
 
     const updateScale = () => {
       window.cancelAnimationFrame(frame);
+
       frame = window.requestAnimationFrame(() => {
         const viewportHeight = Math.max(window.innerHeight, 1);
         const progress = Math.min(window.scrollY / viewportHeight, 1);
+
         setScale(1 + progress * 0.06);
       });
     };
 
     updateScale();
-    window.addEventListener("scroll", updateScale, { passive: true });
+
+    window.addEventListener("scroll", updateScale, {
+      passive: true,
+    });
 
     return () => {
       window.cancelAnimationFrame(frame);
@@ -57,10 +62,12 @@ export default function HeroScrollImage({
         alt={alt}
         className={`${imageClassName} motion-reduce:scale-100`}
         fill
-        priority={priority}
+        preload={priority}
         sizes={sizes}
         src={src}
-        style={{ transform: `scale(${scale})` }}
+        style={{
+          transform: `scale(${scale})`,
+        }}
       />
     </div>
   );

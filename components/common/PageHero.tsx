@@ -18,7 +18,7 @@ const overlayClass = {
   light: "bg-[#031320]/50",
   medium: "bg-[#031320]/65",
   dark: "bg-[#031320]/78",
-};
+} as const;
 
 export default function PageHero({
   eyebrow,
@@ -33,7 +33,6 @@ export default function PageHero({
   align = "left",
 }: PageHeroProps) {
   const isCenter = align === "center";
-
   const resolvedOverlayClassName =
     overlayClassName ?? overlayClass[overlay];
 
@@ -43,7 +42,7 @@ export default function PageHero({
         src={image}
         alt={imageAlt}
         fill
-        priority
+        preload
         sizes="100vw"
         className="object-cover"
       />
