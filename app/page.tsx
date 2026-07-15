@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import FeaturedProduct from "@/components/sections/FeaturedProduct";
@@ -9,14 +8,9 @@ import OceanBanner from "@/components/sections/OceanBanner";
 import OurPromise from "@/components/sections/OurPromise";
 import WhyHuayu from "@/components/sections/WhyHuayu";
 import { brand } from "@/data/brand";
-import { pageSeo } from "@/data/seo";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: pageSeo.home.title,
-  },
-  description: pageSeo.home.description,
-};
+export const metadata = createPageMetadata("home");
 
 export default function Home() {
   const { harbor, ocean } = brand.story;
