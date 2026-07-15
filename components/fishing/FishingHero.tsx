@@ -4,13 +4,13 @@ export default function FishingHero() {
   return (
     <PageHero
       eyebrow="FISHING METHOD"
-      title={`職人手釣`}
-      description={`Every squid is caught by hand.
+      title="職人手釣"
+      description={`Every catch begins with patience.
 
-從夜晚出港，
-直到黎明返航，
-每一尾都是職人的堅持。`}
-      image="/images/night-fishing/03-02_Night_Fishing_Boat.png"
+每一尾劍尖槍鎖管，
+都來自花嶼海域職人的專注與等待。`}
+      image="/images/night-fishing/03-01_Artisan_Fisherman.png"
+      imageAlt="花嶼海域職人夜間手釣劍尖槍鎖管"
       ctaText="探索產品"
       ctaHref="/product"
     />
