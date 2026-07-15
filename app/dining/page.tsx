@@ -1,13 +1,19 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import type { Metadata } from "next";
 import CTASection from "@/components/common/CTASection";
-
-import DiningHero from "@/components/dining/DiningHero";
-import JapaneseStyle from "@/components/dining/JapaneseStyle";
 import ButterSeared from "@/components/dining/ButterSeared";
 import CharcoalGrill from "@/components/dining/CharcoalGrill";
-import SeafoodPasta from "@/components/dining/SeafoodPasta";
+import DiningHero from "@/components/dining/DiningHero";
 import EndingQuote from "@/components/dining/EndingQuote";
+import JapaneseStyle from "@/components/dining/JapaneseStyle";
+import SeafoodPasta from "@/components/dining/SeafoodPasta";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import { pageSeo } from "@/data/seo";
+
+export const metadata: Metadata = {
+  title: pageSeo.dining.title,
+  description: pageSeo.dining.description,
+};
 
 export default function DiningPage() {
   return (
@@ -24,7 +30,8 @@ export default function DiningPage() {
 
         <CTASection
           eyebrow="HANAYU DINING"
-          title={`讓花嶼海域，\n成為餐桌上的主角。`}
+          title={`讓花嶼海域，
+成為餐桌上的主角。`}
           body="真正好的食材，不需要複雜堆疊。只需要尊重它原本的風味。"
           buttonText="探索產品"
           href="/product"
