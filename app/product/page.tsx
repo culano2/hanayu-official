@@ -12,27 +12,28 @@ import PrimaryButton from "@/components/ui/PrimaryButton";
 import Section from "@/components/ui/Section";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Tagline from "@/components/ui/Tagline";
+import { pageSeo } from "@/data/seo";
 
 const productHeroImage = {
   src: "/images/product/04-01_Product_Hero.png",
-  alt: "HANAYU swordtip squid product presented on ice",
+  alt: "HANAYU 劍尖槍鎖管置於碎冰上的產品展示",
 } as const;
 
 const giantSizeImage = {
   src: "/images/product/04-02_Three_Squids.png",
-  alt: "Three premium swordtip squid arranged for product display",
+  alt: "三尾 HANAYU 劍尖槍鎖管產品展示",
 } as const;
 
 export const metadata: Metadata = {
-  title: "劍尖槍鎖管 | HANAYU Product",
-  description:
-    "HANAYU premium swordtip squid from the waters around Huayu Island, hand-caught from June to September.",
+  title: pageSeo.product.title,
+  description: pageSeo.product.description,
 };
 
 export default function ProductPage() {
   return (
     <>
       <Navbar />
+
       <main>
         <section className="relative isolate flex min-h-[100svh] overflow-hidden bg-[#031320]">
           <HeroScrollImage
@@ -43,6 +44,7 @@ export default function ProductPage() {
             imageClassName="object-cover object-[58%_center]"
             className="-z-20"
           />
+
           <div
             aria-hidden="true"
             className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_74%_30%,rgba(200,154,75,0.13),transparent_31%),linear-gradient(90deg,rgba(3,19,32,0.93)_0%,rgba(3,19,32,0.76)_42%,rgba(3,19,32,0.28)_78%),linear-gradient(180deg,rgba(3,19,32,0.2)_0%,rgba(3,19,32,0.86)_100%)]"
@@ -53,6 +55,7 @@ export default function ProductPage() {
               <FadeUp duration={820}>
                 <Eyebrow>HANAYU PRODUCT</Eyebrow>
               </FadeUp>
+
               <FadeUp delay={120} duration={860}>
                 <SectionTitle
                   as="h1"
@@ -63,14 +66,17 @@ export default function ProductPage() {
                   劍尖槍鎖管
                 </SectionTitle>
               </FadeUp>
+
               <FadeIn delay={220} duration={820}>
                 <BrandDivider className="mt-9" />
               </FadeIn>
+
               <FadeUp delay={280} duration={860}>
                 <Tagline className="mt-9 max-w-2xl" size="lg" tone="light">
                   把海鮮，做成精品。
                 </Tagline>
               </FadeUp>
+
               <FadeUp delay={420} duration={780}>
                 <div className="mt-12">
                   <PrimaryButton href="/" size="lg">
@@ -86,10 +92,13 @@ export default function ProductPage() {
           <Container>
             <div className="mx-auto max-w-3xl text-center">
               <Eyebrow>Seasonal Story</Eyebrow>
+
               <SectionTitle className="mt-6" size="section" tone="light">
                 一年只有一季。
               </SectionTitle>
+
               <BrandDivider className="mx-auto mt-8" />
+
               <p className="mt-8 text-base leading-8 text-white/72 sm:text-lg sm:leading-9">
                 六月至九月，是花嶼海域最珍貴的季節。
                 每一尾都由職人手釣，每一年都值得等待。
@@ -105,6 +114,7 @@ export default function ProductPage() {
                 <div className="absolute inset-0 flex items-center justify-center bg-[#F7F6F3] px-8 text-center text-sm font-bold uppercase tracking-[0.18em] text-[#506474]">
                   Product image loading
                 </div>
+
                 <Image
                   alt={giantSizeImage.alt}
                   className="relative z-10 h-full w-full object-contain object-center p-6 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:p-10"
@@ -116,10 +126,17 @@ export default function ProductPage() {
 
               <div className="max-w-xl">
                 <Eyebrow tone="light">Giant Size</Eyebrow>
-                <SectionTitle className="mt-6" size="section" tone="dark">
+
+                <SectionTitle
+                  className="mt-6"
+                  size="section"
+                  tone="dark"
+                >
                   超級大隻，來自花嶼海域。
                 </SectionTitle>
+
                 <BrandDivider className="mt-8" />
+
                 <p className="mt-8 text-base leading-8 text-[#314756] sm:text-lg sm:leading-9">
                   每尾約一公斤，完整保留天然鮮甜。
                 </p>
@@ -128,6 +145,7 @@ export default function ProductPage() {
           </Container>
         </Section>
       </main>
+
       <Footer />
     </>
   );
