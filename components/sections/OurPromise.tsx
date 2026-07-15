@@ -19,9 +19,10 @@ export default function OurPromise() {
             heading={promise.title}
             tone="dark"
           />
+
           <ImagePanel
             alt={promise.image.alt}
-            className="soft-reveal aspect-[16/9]"
+            className="aspect-[16/9] soft-reveal"
             overlay={false}
             sizes="(min-width: 1024px) 58vw, 100vw"
             src={promise.image.src}
@@ -35,9 +36,16 @@ export default function OurPromise() {
               <p className="text-sm font-semibold text-[#9B7333]">
                 0{index + 1}
               </p>
-              <Heading as="h3" className="mt-8" size="card" tone="dark">
+
+              <Heading
+                as="h3"
+                className="mt-8"
+                size="card"
+                tone="dark"
+              >
                 {item.title}
               </Heading>
+
               <p className="mt-5 text-sm leading-7 text-[#506474]">
                 {item.body}
               </p>
@@ -48,3 +56,4 @@ export default function OurPromise() {
     </Section>
   );
 }
+

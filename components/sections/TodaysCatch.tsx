@@ -21,7 +21,11 @@ export default function TodaysCatch() {
 
           <dl className="mt-10 grid grid-cols-2 gap-4 border-y border-[#031320]/12 py-6">
             {todaysCatch.stats.map((stat) => (
-              <Stat key={stat.label} label={stat.label} value={stat.value} />
+              <Stat
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+              />
             ))}
           </dl>
         </div>
@@ -42,9 +46,16 @@ export default function TodaysCatch() {
                 <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9B7333]">
                   {item.status}
                 </p>
-                <Heading as="h3" className="mt-5" size="card" tone="dark">
+
+                <Heading
+                  as="h3"
+                  className="mt-5"
+                  size="card"
+                  tone="dark"
+                >
                   {item.name}
                 </Heading>
+
                 <p className="mt-4 text-sm leading-7 text-[#506474]">
                   {item.detail}
                 </p>

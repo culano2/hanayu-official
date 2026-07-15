@@ -6,7 +6,10 @@ import SplitSection from "@/components/ui/SplitSection";
 type StorySectionProps = {
   eyebrow: string;
   id: string;
-  image: { alt: string; src: string };
+  image: {
+    alt: string;
+    src: string;
+  };
   imageFirst?: boolean;
   paragraphs: ReadonlyArray<string>;
   tone?: "dark" | "light";
@@ -55,3 +58,4 @@ export default function StorySection({
     </Section>
   );
 }
+
