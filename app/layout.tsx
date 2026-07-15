@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/data/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HANAYU | Premium Seafood from Huayu Island",
-  description:
-    "Premium island seafood from HANAYU, landed early, cold-handled, and prepared for chefs and buyers who value origin.",
+  title: {
+    default: siteConfig.defaultTitle,
+    template: siteConfig.titleTemplate,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  creator: siteConfig.displayName,
+  publisher: siteConfig.displayName,
 };
 
 export default function RootLayout({
@@ -13,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang={siteConfig.language} className="h-full antialiased">
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }
