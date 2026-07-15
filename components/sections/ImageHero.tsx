@@ -15,9 +15,18 @@ type ImageHeroProps = {
   eyebrow: string;
   imageAlt: string;
   imageSrc: string;
-  metrics: ReadonlyArray<{ label: string; value: string }>;
-  primaryCta: { href: string; label: string };
-  secondaryCta: { href: string; label: string };
+  metrics: ReadonlyArray<{
+    label: string;
+    value: string;
+  }>;
+  primaryCta: {
+    href: string;
+    label: string;
+  };
+  secondaryCta: {
+    href: string;
+    label: string;
+  };
   subtitle: string;
   tagline: string;
   title: string;
@@ -44,11 +53,12 @@ export default function ImageHero({
           <video
             aria-hidden="true"
             autoPlay
+            className="h-full w-full object-cover"
             loop
             muted
             playsInline
             poster={imageSrc}
-            className="h-full w-full object-cover"
+            preload="metadata"
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
@@ -64,8 +74,8 @@ export default function ImageHero({
       </div>
 
       <div
-        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_34%,rgba(200,154,75,0.14),transparent_32%),linear-gradient(90deg,rgba(3,19,32,0.9)_0%,rgba(3,19,32,0.66)_43%,rgba(3,19,32,0.2)_78%),linear-gradient(180deg,rgba(3,19,32,0.08)_0%,rgba(3,19,32,0.8)_100%)]"
         aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_34%,rgba(200,154,75,0.14),transparent_32%),linear-gradient(90deg,rgba(3,19,32,0.9)_0%,rgba(3,19,32,0.66)_43%,rgba(3,19,32,0.2)_78%),linear-gradient(180deg,rgba(3,19,32,0.08)_0%,rgba(3,19,32,0.8)_100%)]"
         data-hero-overlay
       />
 
@@ -74,34 +84,46 @@ export default function ImageHero({
           <FadeUp duration={820}>
             <Eyebrow>{eyebrow}</Eyebrow>
           </FadeUp>
+
           <FadeUp delay={120} duration={860}>
-            <SectionTitle as="h1" className="mt-6" size="hero" tone="light">
+            <SectionTitle
+              as="h1"
+              className="mt-6"
+              size="hero"
+              tone="light"
+            >
               {title}
             </SectionTitle>
           </FadeUp>
+
           <FadeIn delay={220} duration={820}>
             <BrandDivider className="mt-7" />
           </FadeIn>
+
           <FadeUp delay={260} duration={860}>
             <Tagline className="mt-7 max-w-2xl" size="lg" tone="light">
               {tagline}
             </Tagline>
           </FadeUp>
+
           <FadeUp delay={340} duration={820}>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-white/86 sm:text-2xl sm:leading-9">
               {subtitle}
             </p>
           </FadeUp>
+
           <FadeUp delay={420} duration={820}>
             <p className="mt-5 max-w-xl text-lg leading-8 text-[#F7F6F3] sm:text-xl sm:leading-9">
               {body}
             </p>
           </FadeUp>
+
           <FadeUp delay={520} duration={780}>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <PrimaryButton href={primaryCta.href} size="lg">
                 {primaryCta.label}
               </PrimaryButton>
+
               <SecondaryButton href={secondaryCta.href} size="lg">
                 {secondaryCta.label}
               </SecondaryButton>
@@ -129,7 +151,10 @@ export default function ImageHero({
           className="mt-7 inline-flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-white/60 transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B]"
           aria-label="Scroll to brand story"
         >
-          <span className="h-8 w-px bg-[#C89A4B]/70" aria-hidden="true" />
+          <span
+            className="h-8 w-px bg-[#C89A4B]/70"
+            aria-hidden="true"
+          />
           Scroll
         </a>
       </Container>
