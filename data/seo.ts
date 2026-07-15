@@ -1,6 +1,26 @@
+const fallbackSiteUrl = "http://localhost:3000";
+
+function resolveSiteUrl() {
+  const configuredSiteUrl = process.env.SITE_URL?.trim();
+
+  if (configuredSiteUrl) {
+    return configuredSiteUrl.replace(/\/+$/, "");
+  }
+
+  const vercelProductionUrl =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+
+  if (vercelProductionUrl) {
+    return `https://${vercelProductionUrl.replace(/\/+$/, "")}`;
+  }
+
+  return fallbackSiteUrl;
+}
+
 export const siteConfig = {
   name: "HANAYU",
   displayName: "HANAYU 花嶼海洋",
+  url: resolveSiteUrl(),
   locale: "zh_TW",
   language: "zh-Hant",
   defaultTitle: "HANAYU｜來自花嶼海域的精品海鮮",
