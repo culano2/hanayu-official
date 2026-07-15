@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import CTASection from "@/components/common/CTASection";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
@@ -7,12 +6,9 @@ import PackagingHero from "@/components/packaging/PackagingHero";
 import PackagingPrinciples from "@/components/packaging/PackagingPrinciples";
 import PremiumGiftBox from "@/components/packaging/PremiumGiftBox";
 import VacuumPackage from "@/components/packaging/VacuumPackage";
-import { pageSeo } from "@/data/seo";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: pageSeo.packaging.title,
-  description: pageSeo.packaging.description,
-};
+export const metadata = createPageMetadata("packaging");
 
 export default function PackagingPage() {
   return (
