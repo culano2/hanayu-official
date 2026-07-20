@@ -5,10 +5,23 @@ type ContainerProps = {
   className?: string;
 };
 
-export default function Container({ children, className = "" }: ContainerProps) {
+export default function Container({
+  children,
+  className = "",
+}: ContainerProps) {
   return (
-    <div className={`mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12 ${className}`}>
+    <div
+      className={[
+        "site-container",
+        "mx-auto w-full max-w-7xl",
+        "px-6 sm:px-8 lg:px-12",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {children}
     </div>
   );
 }
+

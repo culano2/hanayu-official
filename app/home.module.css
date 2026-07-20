@@ -1,0 +1,3 @@
+.homePage :global(.site-container) {
+  max-width: 72rem;
+}

@@ -10,6 +10,8 @@ import WhyHuayu from "@/components/sections/WhyHuayu";
 import { brand } from "@/data/brand";
 import { createPageMetadata } from "@/lib/metadata";
 
+import styles from "./home.module.css";
+
 export const metadata = createPageMetadata("home");
 
 export default function Home() {
@@ -19,7 +21,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main>
+      <main className={styles.homePage}>
         <Hero />
         <WhyHuayu />
 

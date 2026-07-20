@@ -26,10 +26,21 @@ export default function ImagePanel({
   src,
   tone = "dark",
 }: ImagePanelProps) {
+  const panelClassName = [
+    "group relative aspect-[4/3] overflow-hidden rounded-lg",
+    "border border-white/10",
+    "shadow-[0_18px_50px_rgba(3,19,32,0.14)]",
+    "transition-shadow duration-700",
+    "ease-[cubic-bezier(0.22,1,0.36,1)]",
+    "hover:shadow-[0_30px_90px_rgba(3,19,32,0.24)]",
+    toneClasses[tone],
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div
-      className={`group relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 shadow-[0_18px_50px_rgba(3,19,32,0.14)] transition-shadow duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_30px_90px_rgba(3,19,32,0.24)] ${toneClasses[tone]} ${className}`}
-    >
+    <div className={panelClassName}>
       <Image
         src={src}
         alt={alt}

@@ -22,7 +22,7 @@ export default function OurPromise() {
 
           <ImagePanel
             alt={promise.image.alt}
-            className="aspect-[16/9] soft-reveal"
+            className="aspect-[16/9] bg-[#F7F6F3] soft-reveal [&_img]:object-contain"
             overlay={false}
             sizes="(min-width: 1024px) 58vw, 100vw"
             src={promise.image.src}

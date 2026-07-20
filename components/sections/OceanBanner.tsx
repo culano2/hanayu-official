@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import Container from "@/components/ui/Container";
 import Divider from "@/components/ui/Divider";
 import Eyebrow from "@/components/ui/Eyebrow";

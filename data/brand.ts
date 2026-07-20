@@ -25,7 +25,7 @@ export const brandAssets = {
   },
   artisanFisherman: {
     src: "/images/night-fishing/03-01_Artisan_Fisherman.png",
-    alt: "Artisan fisherman preparing night fishing gear",
+    alt: "Artisan fisherman lifting a swordtip squid during night fishing",
   },
   nightFishingBoat: {
     src: "/images/night-fishing/03-02_Night_Fishing_Boat.png",
@@ -71,6 +71,18 @@ export const brandAssets = {
     src: "/images/ocean/06-03_Underwater_Light_Beams.png",
     alt: "Soft underwater light beams in deep ocean water",
   },
+  oceanSquidGlow: {
+    src: "/images/ocean/06-04_Ocean_Squid_Glow.png",
+    alt: "Glowing swordtip squid swimming in the deep blue ocean",
+  },
+  oceanCurrentLight: {
+    src: "/images/ocean/06-05_Ocean_Current_Light.png",
+    alt: "Deep ocean currents illuminated by sunlight beneath Huayu waters",
+  },
+  brandIdentityHero: {
+    src: "/images/brand/Brand_Identity_Hero.png",
+    alt: "HANAYU brand identity featuring the logo and premium seafood tagline",
+  },
 } as const;
 
 export const brandMessaging = {
@@ -85,30 +97,45 @@ export const brand = {
   origin: "Huayu Island",
   eyebrow: "FROM HUAYU ISLAND",
   homeHref: "/",
+
   hero: {
     title: "HANAYU",
     tagline: brandMessaging.tagline,
     subtitle: "花嶼海域．職人手釣．劍尖槍鎖管",
     body: brandMessaging.promise,
+
     primaryCta: {
       href: "#story",
       label: "探索品牌故事",
     },
+
     secondaryCta: {
       href: "#featured-product",
       label: "今日漁獲",
     },
+
     media: {
       imageSrc: brandAssets.huayuSunset.src,
       imageAlt: brandAssets.huayuSunset.alt,
       videoSrc: undefined as string | undefined,
     },
+
     metrics: [
-      { value: "6-9 月", label: "捕撈季節" },
-      { value: "手釣", label: "漁法" },
-      { value: "-18°C", label: "保存溫度" },
+      {
+        value: "6-9 月",
+        label: "捕撈季節",
+      },
+      {
+        value: "手釣",
+        label: "漁法",
+      },
+      {
+        value: "-18°C",
+        label: "保存溫度",
+      },
     ],
   },
+
   story: {
     whyHuayu: {
       id: "story",
@@ -121,6 +148,7 @@ export const brand = {
       ],
       image: brandAssets.huayuCliffs,
     },
+
     harbor: {
       id: "harbor",
       eyebrow: "Harbor Story",
@@ -128,6 +156,7 @@ export const brand = {
       body: "清晨的港口，是 HANAYU 對品質承諾的第一個現場。船隻、漁具與時間都被謹慎準備，為的是讓每一批漁獲從出海之前，就被好好對待。",
       image: brandAssets.harborBoat,
     },
+
     nightFishing: {
       id: "night-fishing",
       eyebrow: "Night Fishing",
@@ -137,13 +166,14 @@ export const brand = {
         "一尾一尾親手釣起，不追求速度，而是專注於品質。",
         "每一次出海，都承載著對海洋的尊重。",
       ],
-      image: brandAssets.nightFishingBoat,
+      image: brandAssets.artisanFisherman,
     },
+
     promise: {
       id: "promise",
       eyebrow: "Promise",
       title: "我們的承諾",
-      image: brandAssets.productDetail,
+      image: brandAssets.brandIdentityHero,
       items: [
         {
           title: "職人手釣",
@@ -163,6 +193,7 @@ export const brand = {
         },
       ],
     },
+
     featuredProduct: {
       id: "featured-product",
       eyebrow: "Featured Product",
@@ -171,38 +202,77 @@ export const brand = {
       image: brandAssets.productHero,
       detailImage: brandAssets.productDetail,
       details: [
-        { label: "捕撈季節", value: "每年 6 月至 9 月" },
-        { label: "產地", value: "澎湖花嶼海域" },
-        { label: "漁法", value: "職人手釣" },
-        { label: "包裝", value: "1kg 真空急速冷凍" },
-        { label: "保存", value: "-18°C 以下冷凍保存" },
-        { label: "保存期限", value: "12 個月" },
-        { label: "最佳賞味期", value: "1 個月內" },
+        {
+          label: "捕撈季節",
+          value: "每年 6 月至 9 月",
+        },
+        {
+          label: "產地",
+          value: "澎湖花嶼海域",
+        },
+        {
+          label: "漁法",
+          value: "職人手釣",
+        },
+        {
+          label: "包裝",
+          value: "1kg 真空急速冷凍",
+        },
+        {
+          label: "保存",
+          value: "-18°C 以下冷凍保存",
+        },
+        {
+          label: "保存期限",
+          value: "12 個月",
+        },
+        {
+          label: "最佳賞味期",
+          value: "1 個月內",
+        },
         {
           label: "食用建議",
           value: "建議充分加熱後食用，不建議生食",
         },
       ],
     },
+
     ocean: {
       id: "ocean",
       eyebrow: "Ocean Atmosphere",
       title: "海流留下的風味",
       body: "花嶼的海，不只是背景。它決定了季節、光線與漁獲的節奏，也讓劍尖槍鎖管擁有乾淨而鮮明的產地個性。",
-      image: brandAssets.oceanRocks,
-      secondaryImage: brandAssets.underwaterLight,
+      image: brandAssets.oceanSquidGlow,
+      secondaryImage: brandAssets.oceanCurrentLight,
     },
   },
+
   footer: {
     id: "contact",
     description:
       "Premium seafood from Huayu Island for chefs, retailers, and guests who value origin, handling, and restraint.",
-    company: ["HANAYU Seafood Co.", "Huayu Island, Penghu", "Taiwan"],
+
+    company: [
+      "HANAYU Seafood Co.",
+      "Huayu Island, Penghu",
+      "Taiwan",
+    ],
+
     contactEmail: "hello@hanayu.example",
+
     social: [
-      { label: "Instagram", href: "#" },
-      { label: "Line", href: "#" },
-      { label: "YouTube", href: "#" },
+      {
+        label: "Instagram",
+        href: "#",
+      },
+      {
+        label: "Line",
+        href: "#",
+      },
+      {
+        label: "YouTube",
+        href: "#",
+      },
     ],
   },
 } as const;
