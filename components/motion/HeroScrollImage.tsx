@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type HeroScrollImageProps = {
   alt: string;
@@ -12,6 +12,8 @@ type HeroScrollImageProps = {
   src: string;
 };
 
+const MAX_SCALE_INCREASE = 0.06;
+
 export default function HeroScrollImage({
   alt,
   className = "",
@@ -20,53 +22,78 @@ export default function HeroScrollImage({
   sizes = "100vw",
   src,
 }: HeroScrollImageProps) {
-  const [scale, setScale] = useState(1);
+  const imageRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const image = imageRef.current;
 
-    if (prefersReducedMotion) {
-      return undefined;
+    if (!image) {
+      return;
     }
 
-    let frame = 0;
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
 
-    const updateScale = () => {
-      window.cancelAnimationFrame(frame);
+    if (reducedMotionQuery.matches) {
+      image.style.transform = "scale(1)";
+      return;
+    }
 
-      frame = window.requestAnimationFrame(() => {
-        const viewportHeight = Math.max(window.innerHeight, 1);
-        const progress = Math.min(window.scrollY / viewportHeight, 1);
+    let frameId: number | null = null;
 
-        setScale(1 + progress * 0.06);
-      });
+    const renderScale = () => {
+      frameId = null;
+
+      const viewportHeight = Math.max(window.innerHeight, 1);
+      const progress = Math.min(
+        Math.max(window.scrollY / viewportHeight, 0),
+        1,
+      );
+      const scale = 1 + progress * MAX_SCALE_INCREASE;
+
+      image.style.transform = `scale(${scale})`;
     };
 
-    updateScale();
+    const requestScaleUpdate = () => {
+      if (frameId !== null) {
+        return;
+      }
 
-    window.addEventListener("scroll", updateScale, {
+      frameId = window.requestAnimationFrame(renderScale);
+    };
+
+    requestScaleUpdate();
+
+    window.addEventListener("scroll", requestScaleUpdate, {
       passive: true,
     });
 
+    window.addEventListener("resize", requestScaleUpdate);
+
     return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateScale);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener("scroll", requestScaleUpdate);
+      window.removeEventListener("resize", requestScaleUpdate);
     };
   }, []);
 
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
       <Image
+        ref={imageRef}
         alt={alt}
-        className={`${imageClassName} motion-reduce:scale-100`}
+        className={`${imageClassName} will-change-transform motion-reduce:scale-100`}
         fill
         preload={priority}
         sizes={sizes}
         src={src}
         style={{
-          transform: `scale(${scale})`,
+          transform: "scale(1)",
+          transformOrigin: "center center",
         }}
       />
     </div>

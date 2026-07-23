@@ -155,6 +155,7 @@ export default function ImageHero({
             className="h-8 w-px bg-[#C89A4B]/70"
             aria-hidden="true"
           />
+
           Scroll
         </a>
       </Container>

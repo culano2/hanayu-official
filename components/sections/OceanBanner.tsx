@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import Reveal from "@/components/motion/Reveal";
 import Container from "@/components/ui/Container";
 import Divider from "@/components/ui/Divider";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -35,40 +36,55 @@ export default function OceanBanner({
       <Container>
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div>
-            <Eyebrow>{eyebrow}</Eyebrow>
+            <Reveal>
+              <Eyebrow>{eyebrow}</Eyebrow>
+            </Reveal>
 
-            <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
-              {title}
-            </h2>
+            <Reveal delay={100}>
+              <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
+                {title}
+              </h2>
+            </Reveal>
           </div>
 
-          <p className="max-w-2xl text-lg leading-9 text-white/68">
-            {body}
-          </p>
+          <Reveal delay={200}>
+            <p className="max-w-2xl text-lg leading-9 text-white/68">
+              {body}
+            </p>
+          </Reveal>
         </div>
 
-        <Divider className="my-12" />
+        <Reveal delay={300}>
+          <Divider className="my-12" />
+        </Reveal>
 
         <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-[#031320]">
+          <Reveal
+            variant="scale"
+            className="relative aspect-[16/9] overflow-hidden rounded-md bg-[#031320]"
+          >
             <Image
               src={image.src}
               alt={image.alt}
               fill
               sizes="(min-width: 1024px) 62vw, 100vw"
-              className="object-cover soft-reveal"
+              className="object-cover"
             />
-          </div>
+          </Reveal>
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#031320]">
+          <Reveal
+            variant="scale"
+            delay={100}
+            className="relative aspect-[4/3] overflow-hidden rounded-md bg-[#031320]"
+          >
             <Image
               src={secondaryImage.src}
               alt={secondaryImage.alt}
               fill
               sizes="(min-width: 1024px) 38vw, 100vw"
-              className="object-cover soft-reveal"
+              className="object-cover"
             />
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

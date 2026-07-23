@@ -5,19 +5,19 @@
 ========================== */
 
 :root {
-
   /* Brand Colors */
   --hanayu-deep-ocean: #031320;
-  --hanayu-midnight-blue: #0A2438;
+  --hanayu-midnight-blue: #0a2438;
   --hanayu-ocean-slate: #506474;
-  --hanayu-premium-gold: #C89A4B;
-  --hanayu-pearl-white: #F7F6F3;
-  --hanayu-mist-gray: #D8DEE2;
+  --hanayu-premium-gold: #c89a4b;
+  --hanayu-pearl-white: #f7f6f3;
+  --hanayu-mist-gray: #d8dee2;
+
   --hanayu-navy: var(--hanayu-deep-ocean);
   --hanayu-blue: var(--hanayu-midnight-blue);
   --hanayu-gold: var(--hanayu-premium-gold);
   --hanayu-light: var(--hanayu-pearl-white);
-  --hanayu-white: #FFFFFF;
+  --hanayu-white: #ffffff;
 
   /* Default */
   --background: var(--hanayu-navy);
@@ -26,87 +26,266 @@
   /* Radius */
   --radius: 18px;
 
+  /* Motion Duration */
+  --motion-duration-fast: 240ms;
+  --motion-duration-base: 480ms;
+  --motion-duration-reveal: 800ms;
+  --motion-duration-slow: 1100ms;
+
+  /* Motion Easing */
+  --motion-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-image: cubic-bezier(0.2, 0.75, 0.25, 1);
+
+  /* Motion Distance */
+  --motion-distance-sm: 12px;
+  --motion-distance-md: 24px;
+  --motion-distance-lg: 40px;
+
+  /* Premium Effects */
+  --premium-shadow:
+    0 24px 70px rgb(0 0 0 / 18%),
+    0 8px 24px rgb(0 0 0 / 12%);
+
+  --premium-shadow-hover:
+    0 32px 90px rgb(0 0 0 / 24%),
+    0 12px 32px rgb(0 0 0 / 16%);
 }
 
 @theme inline {
-
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
   --font-sans: Arial, Helvetica, sans-serif;
-
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+/* ==========================
+   Global Reset
+========================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html{
-
-  scroll-behavior:smooth;
-
+html {
+  scroll-behavior: smooth;
 }
 
-body{
+body {
+  min-height: 100vh;
 
-  background:var(--background);
+  background: var(--background);
+  color: var(--foreground);
 
-  color:var(--foreground);
+  overflow-x: hidden;
 
-  overflow-x:hidden;
-
-  font-family:Arial, Helvetica, sans-serif;
-
+  font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a{
-
-  text-decoration:none;
-
-  color:inherit;
-
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button{
-
-  cursor:pointer;
-
+button {
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
 
-img{
-
-  display:block;
-
-  max-width:100%;
-
+img {
+  display: block;
+  max-width: 100%;
 }
+
+/* ==========================
+   Motion Foundation
+========================== */
+
+/*
+  Legacy entrance animations.
+
+  保留既有 class，避免目前網站畫面改變。
+  RC2.1 後續會逐步改由 Scroll Reveal 元件控制。
+*/
 
 .fade-up {
-  animation: fade-up 700ms ease-out both;
+  animation: fade-up var(--motion-duration-reveal)
+    var(--motion-ease-emphasized) both;
 }
 
 .soft-reveal {
-  animation: soft-reveal 900ms ease-out both;
+  animation: soft-reveal var(--motion-duration-slow)
+    var(--motion-ease-image) both;
 }
+
+/* Motion Delay Utilities */
+
+.motion-delay-100 {
+  animation-delay: 100ms;
+  transition-delay: 100ms;
+}
+
+.motion-delay-200 {
+  animation-delay: 200ms;
+  transition-delay: 200ms;
+}
+
+.motion-delay-300 {
+  animation-delay: 300ms;
+  transition-delay: 300ms;
+}
+
+.motion-delay-400 {
+  animation-delay: 400ms;
+  transition-delay: 400ms;
+}
+
+/* ==========================
+   Scroll Reveal States
+========================== */
+
+/*
+  Reveal 元件尚未建立。
+
+  元素預設保持可見，只有加入 data-reveal 且 JavaScript
+  成功初始化後，才會進入隱藏狀態。
+
+  這可以避免 JavaScript 關閉或載入失敗時內容消失。
+*/
+
+[data-reveal] {
+  transition:
+    opacity var(--motion-duration-reveal) var(--motion-ease-emphasized),
+    transform var(--motion-duration-reveal) var(--motion-ease-emphasized),
+    filter var(--motion-duration-reveal) var(--motion-ease-emphasized);
+}
+
+.motion-ready [data-reveal]:not([data-reveal-visible="true"]) {
+  opacity: 0;
+}
+
+.motion-ready [data-reveal="fade-up"]:not(
+    [data-reveal-visible="true"]
+  ) {
+  transform: translate3d(0, var(--motion-distance-md), 0);
+}
+
+.motion-ready [data-reveal="fade-down"]:not(
+    [data-reveal-visible="true"]
+  ) {
+  transform: translate3d(0, calc(var(--motion-distance-md) * -1), 0);
+}
+
+.motion-ready [data-reveal="fade-left"]:not(
+    [data-reveal-visible="true"]
+  ) {
+  transform: translate3d(var(--motion-distance-md), 0, 0);
+}
+
+.motion-ready [data-reveal="fade-right"]:not(
+    [data-reveal-visible="true"]
+  ) {
+  transform: translate3d(calc(var(--motion-distance-md) * -1), 0, 0);
+}
+
+.motion-ready [data-reveal="scale"]:not(
+    [data-reveal-visible="true"]
+  ) {
+  transform: scale(1.025);
+}
+
+.motion-ready [data-reveal="blur"]:not(
+    [data-reveal-visible="true"]
+  ) {
+  transform: translate3d(0, var(--motion-distance-sm), 0);
+  filter: blur(8px);
+}
+
+[data-reveal-visible="true"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* Reveal Transition Delays */
+
+[data-reveal-delay="100"] {
+  transition-delay: 100ms;
+}
+
+[data-reveal-delay="200"] {
+  transition-delay: 200ms;
+}
+
+[data-reveal-delay="300"] {
+  transition-delay: 300ms;
+}
+
+[data-reveal-delay="400"] {
+  transition-delay: 400ms;
+}
+
+[data-reveal-delay="500"] {
+  transition-delay: 500ms;
+}
+
+/* ==========================
+   Premium Interaction
+========================== */
+
+.premium-interaction {
+  transition:
+    transform var(--motion-duration-base) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-base) var(--motion-ease-standard),
+    opacity var(--motion-duration-fast) ease-out;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .premium-interaction:hover {
+    transform: translate3d(0, -4px, 0);
+  }
+
+  .premium-image {
+    overflow: hidden;
+  }
+
+  .premium-image img {
+    transition: transform 900ms var(--motion-ease-image);
+    will-change: transform;
+  }
+
+  .premium-image:hover img {
+    transform: scale(1.025);
+  }
+}
+
+/* ==========================
+   Keyframes
+========================== */
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translate3d(0, var(--motion-distance-md), 0);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes soft-reveal {
   from {
     opacity: 0;
-    transform: scale(1.015);
+    transform: scale(1.02);
   }
 
   to {
@@ -114,6 +293,10 @@ img{
     transform: scale(1);
   }
 }
+
+/* ==========================
+   Reduced Motion
+========================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -125,9 +308,15 @@ img{
     animation: none;
   }
 
-  * {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+  [data-reveal],
+  [data-reveal-visible="true"],
+  .motion-ready [data-reveal],
+  .premium-interaction,
+  .premium-image img {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+    transition: none;
   }
 }

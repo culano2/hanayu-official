@@ -1,3 +1,4 @@
+import Reveal from "@/components/motion/Reveal";
 import Divider from "@/components/ui/Divider";
 import ImagePanel from "@/components/ui/ImagePanel";
 import Section from "@/components/ui/Section";
@@ -38,34 +39,47 @@ export default function ProductHighlight({
         className="lg:grid-cols-[0.95fr_1.05fr]"
         media={
           <div className="grid gap-5">
-            <ImagePanel
-              alt={image.alt}
-              className="soft-reveal lg:aspect-[5/4]"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              src={image.src}
-            />
+            <Reveal variant="scale">
+              <ImagePanel
+                alt={image.alt}
+                className="lg:aspect-[5/4]"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                src={image.src}
+              />
+            </Reveal>
 
-            <ImagePanel
-              alt={detailImage.alt}
-              className="aspect-[16/9] soft-reveal"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              src={detailImage.src}
-            />
+            <Reveal variant="scale" delay={100}>
+              <ImagePanel
+                alt={detailImage.alt}
+                className="aspect-[16/9]"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                src={detailImage.src}
+              />
+            </Reveal>
           </div>
         }
         text={
           <div>
-            <SectionHeader
-              body={<p>{body}</p>}
-              eyebrow={eyebrow}
-              heading={title}
-            />
+            <Reveal>
+              <SectionHeader
+                body={<p>{body}</p>}
+                eyebrow={eyebrow}
+                heading={title}
+              />
+            </Reveal>
 
-            <Divider className="my-10" />
+            <Reveal delay={100}>
+              <Divider className="my-10" />
+            </Reveal>
 
             <dl className="grid gap-x-7 gap-y-5 sm:grid-cols-2">
-              {details.map((detail) => (
-                <div key={detail.label} className="pt-1">
+              {details.map((detail, index) => (
+                <Reveal
+                  key={detail.label}
+                  as="div"
+                  delay={index % 2 === 0 ? 200 : 300}
+                  className="pt-1"
+                >
                   <dt className="text-sm font-semibold text-[#C89A4B]">
                     {detail.label}
                   </dt>
@@ -73,7 +87,7 @@ export default function ProductHighlight({
                   <dd className="mt-2 text-sm leading-6 text-white/68">
                     {detail.value}
                   </dd>
-                </div>
+                </Reveal>
               ))}
             </dl>
           </div>

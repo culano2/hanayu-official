@@ -1,3 +1,4 @@
+import Reveal from "@/components/motion/Reveal";
 import ImagePanel from "@/components/ui/ImagePanel";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -31,28 +32,31 @@ export default function StorySection({
     <Section id={id} tone={tone}>
       <SplitSection
         media={
-          <ImagePanel
-            alt={image.alt}
-            className="soft-reveal"
-            sizes="(min-width: 1024px) 48vw, 100vw"
-            src={image.src}
-            tone={isLight ? "light" : "dark"}
-          />
+          <Reveal variant="scale">
+            <ImagePanel
+              alt={image.alt}
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              src={image.src}
+              tone={isLight ? "light" : "dark"}
+            />
+          </Reveal>
         }
         mediaFirst={imageFirst}
         text={
-          <SectionHeader
-            body={
-              <div className="space-y-6">
-                {paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            }
-            eyebrow={eyebrow}
-            heading={title}
-            tone={isLight ? "dark" : "light"}
-          />
+          <Reveal delay={100}>
+            <SectionHeader
+              body={
+                <div className="space-y-6">
+                  {paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              }
+              eyebrow={eyebrow}
+              heading={title}
+              tone={isLight ? "dark" : "light"}
+            />
+          </Reveal>
         }
       />
     </Section>

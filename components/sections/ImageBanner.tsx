@@ -1,4 +1,6 @@
 import Image from "next/image";
+
+import Reveal from "@/components/motion/Reveal";
 import Container from "@/components/ui/Container";
 import Eyebrow from "@/components/ui/Eyebrow";
 
@@ -25,13 +27,18 @@ export default function ImageBanner({
       id={id}
       className="relative isolate overflow-hidden bg-[#031320] py-28 text-white sm:py-36 lg:py-44"
     >
-      <Image
-        src={image.src}
-        alt={image.alt}
-        fill
-        sizes="100vw"
-        className="-z-20 object-cover object-center soft-reveal"
-      />
+      <Reveal
+        variant="scale"
+        className="absolute inset-0 -z-20 overflow-hidden"
+      >
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </Reveal>
 
       <div
         aria-hidden="true"
@@ -40,15 +47,21 @@ export default function ImageBanner({
 
       <Container>
         <div className="max-w-2xl">
-          <Eyebrow>{eyebrow}</Eyebrow>
+          <Reveal>
+            <Eyebrow>{eyebrow}</Eyebrow>
+          </Reveal>
 
-          <h2 className="mt-5 text-4xl font-semibold leading-tight sm:text-5xl">
-            {title}
-          </h2>
+          <Reveal delay={100}>
+            <h2 className="mt-5 text-4xl font-semibold leading-tight sm:text-5xl">
+              {title}
+            </h2>
+          </Reveal>
 
-          <p className="mt-6 text-lg leading-9 text-white/72">
-            {body}
-          </p>
+          <Reveal delay={200}>
+            <p className="mt-6 text-lg leading-9 text-white/72">
+              {body}
+            </p>
+          </Reveal>
         </div>
       </Container>
     </section>
