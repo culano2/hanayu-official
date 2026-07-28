@@ -1,4 +1,6 @@
-import Button, { type ButtonProps } from "@/components/ui/Button";
+import Button, {
+  type ButtonProps,
+} from "@/components/ui/Button";
 
 export default function SecondaryButton({
   className = "",
@@ -6,7 +8,7 @@ export default function SecondaryButton({
 }: Omit<ButtonProps, "variant">) {
   return (
     <Button
-      className={`min-h-12 hover:-translate-y-0.5 ${className}`}
+      className={`min-h-12 ${className}`}
       variant="secondary"
       {...props}
     />

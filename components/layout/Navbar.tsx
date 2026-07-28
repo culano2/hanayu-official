@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import DesktopNav from "@/components/navigation/DesktopNav";
+import MobileNav from "@/components/navigation/MobileNav";
 import Logo from "@/components/ui/Logo";
 
 export default function Navbar() {
@@ -16,7 +17,7 @@ export default function Navbar() {
 
     onScroll();
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -25,7 +26,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 motion-reduce:transition-none ${
         scrolled
           ? "border-b border-white/10 bg-[#031320]/80 backdrop-blur-xl"
           : "bg-transparent"
@@ -35,9 +36,20 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3"
+          aria-label="HANAYU 花嶼海洋首頁"
+          className="
+            flex items-center gap-3
+            rounded-sm outline-none
+            transition-opacity duration-300
+            hover:opacity-85
+            focus-visible:outline
+            focus-visible:outline-2
+            focus-visible:outline-offset-4
+            focus-visible:outline-[#C89A4B]
+            motion-reduce:transition-none
+          "
         >
-        <Logo name="HANAYU" origin="花嶼海洋" />
+          <Logo name="HANAYU" origin="花嶼海洋" />
 
           <span className="hidden text-lg font-light tracking-[0.28em] text-white md:block">
             HANAYU
@@ -47,23 +59,49 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <DesktopNav />
 
-        {/* Right Side (預留功能) */}
+        {/* Desktop Right Side (預留功能) */}
         <div className="hidden items-center gap-6 lg:flex">
           <button
-            className="text-sm tracking-[0.2em] text-white/60 transition hover:text-white"
             type="button"
+            aria-label="切換為英文版，功能即將推出"
+            className="
+              rounded-sm text-sm tracking-[0.2em] text-white/60
+              outline-none
+              transition-colors duration-300
+              hover:text-white
+              focus-visible:text-white
+              focus-visible:outline
+              focus-visible:outline-2
+              focus-visible:outline-offset-4
+              focus-visible:outline-[#C89A4B]
+              motion-reduce:transition-none
+            "
           >
             EN
           </button>
 
           <button
-            className="text-white/60 transition hover:text-white"
             type="button"
-            aria-label="Search (Coming Soon)"
+            aria-label="搜尋，功能即將推出"
+            className="
+              rounded-sm text-white/60
+              outline-none
+              transition-colors duration-300
+              hover:text-white
+              focus-visible:text-white
+              focus-visible:outline
+              focus-visible:outline-2
+              focus-visible:outline-offset-4
+              focus-visible:outline-[#C89A4B]
+              motion-reduce:transition-none
+            "
           >
-            ○
+            <span aria-hidden="true">○</span>
           </button>
         </div>
+
+        {/* Mobile Navigation */}
+        <MobileNav />
       </div>
     </header>
   );

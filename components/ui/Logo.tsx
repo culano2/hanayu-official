@@ -40,6 +40,7 @@ export default function Logo({
       >
         {name}
       </span>
+
       <span
         className={`mt-2 text-[0.65rem] font-medium uppercase tracking-[0.32em] ${toneClasses[tone].origin}`}
       >
@@ -48,15 +49,30 @@ export default function Logo({
     </>
   );
 
-  const classes = `flex flex-col leading-none transition-opacity duration-300 hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C89A4B] ${className}`;
+  const baseClasses = `flex flex-col leading-none ${className}`;
 
   if (href) {
     return (
-      <Link aria-label={ariaLabel} className={classes} href={href} onClick={onClick}>
+      <Link
+        href={href}
+        aria-label={ariaLabel}
+        onClick={onClick}
+        className={`
+          ${baseClasses}
+          rounded-sm outline-none
+          transition-opacity duration-300
+          hover:opacity-85
+          focus-visible:outline
+          focus-visible:outline-2
+          focus-visible:outline-offset-4
+          focus-visible:outline-[#C89A4B]
+          motion-reduce:transition-none
+        `}
+      >
         {content}
       </Link>
     );
   }
 
-  return <div className={classes}>{content}</div>;
+  return <div className={baseClasses}>{content}</div>;
 }
